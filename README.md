@@ -73,11 +73,11 @@ When using variables in different contexts, they must be declined to the appropr
 
 Example:
 
-~~~latin
+```latin
 SITAMICUS
 SITPUELLA
 SITBELLVM
-~~~
+```
 
 ### Parsing and Word Boundaries
 
@@ -104,9 +104,9 @@ Some LATIN programs may have multiple valid interpretations. This is considered 
 
 Example of potential ambiguity:
 
-~~~latin
+```latin
 SITAMO
-~~~
+```
 
 Could be parsed as: `SIT AMO` (let there be "I love") or `SITAMO` (a hypothetical single word).
 
@@ -126,10 +126,10 @@ In LATIN, numbers are represented using roman numerals for numbers:
 - Combinations of these letters can be used to represent other numbers (e.g., IV for 4, IX for 9, XL for 40, etc.).
 Examples:
 
-~~~latin
+```latin
 MXXIV  ; represents 1024
 DCCCXC  ; represents 890
-~~~
+```
 
 ### Comments
 
@@ -137,11 +137,11 @@ Comments in LATIN begin with a semicolon (`;`) and extend to the end of the line
 
 Example:
 
-~~~latin
+```latin
 SITNUMERUS           ; declare a variable
 NUMERUSESTXLII       ; set it to 42
 SCRIBENUMERUM        ; output the value
-~~~
+```
 
 Comments allow programmers to document their Latin grammar choices and explain the meaning of variable names without affecting program execution.
 
@@ -160,25 +160,25 @@ LATIN includes basic control structures such as conditionals and loops, using La
 
 Syntax:
 
-~~~latin
+```latin
 SI[nominative][comparison][value]
 [statements]
 FINIS
-~~~
+```
 
 Or with else:
 
-~~~latin
+```latin
 SI[nominative][comparison][value]
 [statements if true]
 ALITER
 [statements if false]
 FINIS
-~~~
+```
 
 Examples:
 
-~~~latin
+```latin
 SITNUMERUS
 NUMERUSESTX
 SINUMERUSAEQUATX     ; if NUMERUS equals 10
@@ -192,11 +192,11 @@ FINIS
 SINUMERUSMINORXX     ; if NUMERUS < 20
 SCRIBENUMERUM
 FINIS
-~~~
+```
 
 Example with else:
 
-~~~latin
+```latin
 SITNUMERUS
 SITSUMMA
 NUMERUSESTX
@@ -206,7 +206,7 @@ ALITER               ; else
 SUMMAESTL            ; SUMMA = 50
 FINIS                ; end if
 SCRIBESUMMA          ; prints C (or L if condition was false)
-~~~
+```
 
 #### While Loop
 
@@ -214,22 +214,22 @@ SCRIBESUMMA          ; prints C (or L if condition was false)
 
 Syntax:
 
-~~~latin
+```latin
 DUM[nominative][comparison][value]
 [statements]
 FINIS
-~~~
+```
 
 Example - countdown from 10:
 
-~~~latin
+```latin
 SITNUMERUS
 NUMERUSESTX          ; start at 10
 DUMNUMERUSMAIVSI     ; while NUMERUS > 1
 SCRIBENUMERUM        ; print current value
 NUMERUSESTDEMENUMEROI ; subtract 1
 FINIS                ; end loop
-~~~
+```
 
 ### Arithmetic Operations
 
@@ -260,7 +260,7 @@ String operations that check conditions (INCIPITCVM, FINITVRCVM, CONTINET) retur
 
 Examples:
 
-~~~latin
+```latin
 ; String concatenation
 SITNOMEN
 SITSALVTATIO
@@ -299,11 +299,11 @@ SCRIBERESULTAT       ; outputs: III (position 3)
 SINOMENAEQUAT"CAESAR"
 SCRIBE"Name is CAESAR"
 FINIS
-~~~
+```
 
 ### Arithmetic Examples
 
-~~~latin
+```latin
 SITPRIMUS
 SITSECUNDUS
 SITTERTIUS
@@ -325,7 +325,7 @@ PRIMUSESTC
 SECUNDUSESTII
 TERTIUSESTDVCEPRIMOSECUNDO
 SCRIBETERTIUM        ; outputs: L
-~~~
+```
 
 ### Functions
 
@@ -340,7 +340,7 @@ LATIN supports function definitions and calls using Latin terminology.
 
 LATIN supports reading user input with the **LEGO** keyword (Latin for "I read" or "I gather"):
 
-~~~latin
+```latin
 SITNOMEN
 SITNUMERUS
 
@@ -349,9 +349,10 @@ LEGONOMEN            ; reads text input
 
 SCRIBE"Enter a number:"
 LEGONUMERUS          ; reads Roman numeral
-~~~
+```
 
 LEGO automatically detects whether the input is a Roman numeral or text:
+
 - If the input is a valid Roman numeral (I, V, X, L, C, D, M), it's stored as an integer
 - Otherwise, it's stored as a string
 - Strings can optionally be entered with quotes, which will be removed
@@ -360,13 +361,13 @@ LEGO automatically detects whether the input is a Roman numeral or text:
 
 LATIN includes an interactive Read-Eval-Print Loop for experimenting with the language:
 
-~~~bash
+```bash
 # Start the REPL
 python3 latin.py --repl
 
 # Or just run without arguments
 python3 latin.py
-~~~
+```
 
 REPL commands:
 
@@ -377,18 +378,18 @@ REPL commands:
 
 Example REPL session:
 
-~~~latin
+```latin
 LATIN> SITNUMERUS
 LATIN> NUMERUSESTXLII
 LATIN> SCRIBENUMERUM
 XLII
 LATIN> VALE
 Vale! (Goodbye!)
-~~~
+```
 
 ### Running LATIN Programs
 
-~~~bash
+```bash
 # Run a LATIN program
 python3 latin.py program.lat
 
@@ -397,7 +398,7 @@ python3 latin.py program.lat --english
 
 # Start interactive REPL
 python3 latin.py --repl
-~~~
+```
 
 ### Output Format
 
@@ -435,6 +436,53 @@ LATIN provides error messages in both Latin (default) and English:
 - `Variable not declared`
 - `Invalid syntax`  
 - `Division by zero`
+
+### A larger example - ELIZA
+
+Eliza is a classic chatbot program that simulates a conversation with a psychotherapist. Below is a simplified version of Eliza implemented in LATIN: (just admire the simplicity of the language)
+
+```latin
+SITINPUTVM
+SITCONTINVA
+SITRESULTAT
+CONTINVAESTI
+SCRIBE"ELIZA: Salve! Quid in animo est?"
+SCRIBE"(Type VALE to exit)"
+SCRIBE""
+DUMCONTINVAAEQUATI
+SCRIBE"You:"
+LEGOINPUTVM
+SIINPUTVMAEQUAT"VALE"
+SCRIBE"ELIZA: Vale! Cura ut valeas."
+CONTINVAESTNIHIL
+FINIS
+RESULTATESTCONTINETINPUTVM"tristis"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Cur tristis es?"
+FINIS
+RESULTATESTCONTINETINPUTVM"felix"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Gaudeo!"
+FINIS
+RESULTATESTCONTINETINPUTVM"mater"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Dic mihi de matre tua."
+FINIS
+RESULTATESTCONTINETINPUTVM"pater"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Quomodo pater tuus te afficit?"
+FINIS
+RESULTATESTINCIPITCVMINPUTVM"cur"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Cur putas?"
+FINIS
+RESULTATESTCONTINETINPUTVM"volo"
+SIRESULTATAEQUATI
+SCRIBE"ELIZA: Quid accideret si id haberes?"
+FINIS
+SCRIBE""
+FINIS
+```
 
 ## Community and Resources
 

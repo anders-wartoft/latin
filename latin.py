@@ -105,6 +105,9 @@ class LatinDeclension:
         'NOMEN': {'acc': 'NOMEN', 'dat': 'NOMINI', 'abl': 'NOMINE'},
         'AETAS': {'acc': 'AETATEM', 'dat': 'AETATI', 'abl': 'AETATE'},
         'SALVTATIO': {'acc': 'SALVTATIONEM', 'dat': 'SALVTATIONI', 'abl': 'SALVTATIONE'},
+        'INPUTVM': {'acc': 'INPUTVM', 'dat': 'INPUTO', 'abl': 'INPUTO'},
+        'CONTINVA': {'acc': 'CONTINVAM', 'dat': 'CONTINVAE', 'abl': 'CONTINVA'},
+        'RESPONSUM': {'acc': 'RESPONSUM', 'dat': 'RESPONSO', 'abl': 'RESPONSO'},
         # Fourth declension
         'MANVS': {'acc': 'MANVM', 'dat': 'MANVI', 'abl': 'MANV'},
         'GRADVS': {'acc': 'GRADVM', 'dat': 'GRADVI', 'abl': 'GRADV'},
@@ -190,6 +193,7 @@ class Tokenizer:
                 if tokens[-1] == ('KEYWORD', 'SIT'):
                     remaining = line[pos:]
                     found_var = None
+                    # First try to find in DECLENSIONS table
                     for nom in LatinDeclension.DECLENSIONS.keys():
                         if remaining.startswith(nom):
                             found_var = nom
@@ -198,7 +202,16 @@ class Tokenizer:
                     if found_var:
                         tokens.append(('VARIABLE', found_var))
                         pos += len(found_var)
-                        continue
+                    else:
+                        # Variable not in declensions - parse as uppercase letters
+                        end = pos
+                        while end < len(line) and line[end].isupper():
+                            end += 1
+                        if end > pos:
+                            var_name = line[pos:end]
+                            tokens.append(('VARIABLE', var_name))
+                            pos = end
+                    continue
                 
                 continue
             
@@ -292,7 +305,8 @@ class LatinInterpreter:
         self.use_english_errors = use_english_errors
         self.lines = []
         self.line_index = 0
-        self.loop_starts = []  # Stack of loop start line numbers
+        self.loop_starts = []  # Stack of (loop_start_line, depth_at_loop_start) tuples
+        self.block_depth = 0  # Current nesting depth of SI/DUM/ALITER blocks
     
     def error(self, latin_msg: str, english_msg: str):
         """Raise error in Latin or English based on settings."""
@@ -338,9 +352,11 @@ class LatinInterpreter:
         # Handle FINIS (end block)
         if tokens[0] == ('KEYWORD', 'FINIS'):
             self.skip_execution = False
-            # If this ends a loop, jump back to loop start
-            if self.loop_starts:
-                loop_start = self.loop_starts.pop()
+            self.block_depth -= 1
+            # If this ends a loop (depth returns to loop start depth), jump back
+            if self.loop_starts and self.loop_starts[-1][1] == self.block_depth:
+                loop_start, _ = self.loop_starts.pop()
+                self.block_depth += 1  # Re-enter the loop
                 return loop_start
             return None
         
@@ -452,8 +468,9 @@ class LatinInterpreter:
                         depth -= 1
                     search_idx += 1
                 return search_idx - 1
-            # Otherwise continue into loop and remember start position
-            self.loop_starts.append(self.line_index)
+            # Otherwise continue into loop and remember start position with current depth
+            self.loop_starts.append((self.line_index, self.block_depth))
+            self.block_depth += 1
             return None
         
         # Handle ALITER (else)
@@ -518,7 +535,7 @@ class LatinInterpreter:
                 condition_met = (left_value < right_value)
             
             if not condition_met:
-                # Skip to ALITER or FINIS
+                # Skip to ALITER or FINIS (don't change depth since we're not entering the block)
                 depth = 1
                 search_idx = self.line_index + 1
                 while search_idx < len(self.lines) and depth > 0:
@@ -529,11 +546,17 @@ class LatinInterpreter:
                         depth += 1
                     elif search_line == 'ALITER' and depth == 1:
                         # Found ALITER at same depth - jump past it to continue with else block
+                        # Increment block_depth since we're entering the ALITER block
+                        self.block_depth += 1
                         return search_idx + 1
                     elif search_line == 'FINIS':
                         depth -= 1
                     search_idx += 1
+                # Jumped to FINIS - it will handle decrementing depth, so pre-increment to balance
+                self.block_depth += 1
                 return search_idx - 1
+            # Condition is true, enter SI block
+            self.block_depth += 1
             return None
         
         # Handle assignment (VARIABLE EST ...)

@@ -23,12 +23,14 @@
 ### Operations (12 total)
 
 #### Arithmetic
+
 - ✅ ADDE - Addition
 - ✅ DEME - Subtraction  
 - ✅ MVLTIPLICA - Multiplication
 - ✅ DVCE - Integer division
 
 #### String Operations
+
 - ✅ IVNGE - String concatenation
 - ✅ INCIPITCVM - Starts with
 - ✅ FINITVRCVM - Ends with
@@ -36,6 +38,7 @@
 - ✅ INDICEDE - Index of
 
 #### Comparison
+
 - ✅ AEQUAT - Equals comparison (numbers and strings)
 - ✅ MAIVS - Greater than
 - ✅ MINOR - Less than
@@ -77,6 +80,7 @@
 - ✅ multiply.lat - Multiplication
 - ✅ comparison.lat - Greater/less than
 - ✅ loop.lat - While loop
+- ✅ countdown.lat - Countdown loop
 - ✅ strings.lat - String literals and concatenation
 - ✅ string_ops.lat - String comparison operations
 - ✅ input.lat - User input with LEGO
