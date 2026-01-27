@@ -1,0 +1,12 @@
+; LATIN example - While Loop
+; Counts down from 10 to 1
+
+SITNUMERUS           ; declare counter
+NUMERUSESTX          ; start at 10
+
+DUMNUMERUSMAIVSNIHIL ; while NUMERUS > 0 (NIHIL would be 0 but we use I)
+SCRIBENUMERUM        ; print current value
+NUMERUSESTDEMENUMEROI ; subtract 1 from NUMERUS
+FINIS                ; end loop
+
+; Output: X IX VIII VII VI V IV III II I

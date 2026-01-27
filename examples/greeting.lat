@@ -1,0 +1,22 @@
+; LATIN example - Greeting with comparison
+; Demonstrates input and conditional logic
+
+SITNOMEN
+SITAETAS
+
+SCRIBE"Quid est nomen tuum?"
+LEGONOMEN
+
+SCRIBE"Quotannis habes?"
+LEGOAETAS
+
+SCRIBE"Salve,"
+SCRIBENOMEN
+
+SIAETASMAIVSLXV
+SCRIBE"Tu es senior!"
+FINIS
+
+SIAETASMINORLXV
+SCRIBE"Tu es iunior."
+FINIS

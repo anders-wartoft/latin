@@ -1,0 +1,13 @@
+; LATIN example - Multiplication
+; Demonstrates MVLTIPLICA operation
+
+SITPRIMUS            ; declare first number
+SITSECUNDUS          ; declare second number
+SITTERTIUS           ; declare result
+
+PRIMUSESTVI          ; PRIMUS = 6
+SECUNDUSESTVII       ; SECUNDUS = 7
+TERTIUSESTMVLTIPLICAPRIMUMSECUNDUM  ; TERTIUS = 6 * 7
+SCRIBETERTIUM        ; print result
+
+; Output: XLII

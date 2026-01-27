@@ -1,0 +1,23 @@
+; LATIN example - ALITER (else)
+; Demonstrates SI/ALITER/FINIS (if/else/end)
+
+SITNUMERUS
+SITSUMMA
+
+; Test with condition true
+NUMERUSESTX          ; NUMERUS = 10
+SINUMERUSAEQUATX     ; if NUMERUS equals 10
+SUMMAESTC            ; then SUMMA = 100
+ALITER               ; else
+SUMMAESTL            ; SUMMA = 50
+FINIS                ; end if
+SCRIBESUMMA          ; prints: C
+
+; Test with condition false
+NUMERUSESTV          ; NUMERUS = 5
+SINUMERUSAEQUATX     ; if NUMERUS equals 10
+SUMMAESTC            ; then SUMMA = 100
+ALITER               ; else
+SUMMAESTL            ; SUMMA = 50
+FINIS                ; end if
+SCRIBESUMMA          ; prints: L

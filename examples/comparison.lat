@@ -1,0 +1,18 @@
+; LATIN example - Greater Than / Less Than
+; Demonstrates MAIVS (greater) and MINOR (less) comparisons
+
+SITNUMERUS
+SITMAXIMVS
+
+NUMERUSESTL          ; NUMERUS = 50
+MAXIMVSESTC          ; MAXIMVS = 100
+
+SINUMERUSMINORMAXIMVM  ; if NUMERUS < MAXIMVS
+SCRIBENUMERUM        ; then print NUMERUS
+FINIS                ; end if
+
+SIMAXIMVSMAIVSNUMERUM  ; if MAXIMVS > NUMERUS  
+SCRIBEMAXIMVM        ; then print MAXIMVS
+FINIS                ; end if
+
+; Output: L then C

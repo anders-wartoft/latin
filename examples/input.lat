@@ -1,0 +1,23 @@
+; LATIN example - User input
+; Demonstrates LEGO (read input)
+
+SITNOMEN
+SITNUMERUS
+SITSUMMA
+
+; Read a name
+SCRIBE"Quid est nomen tuum?"
+LEGONOMEN
+SCRIBE"Salve,"
+SCRIBENOMEN
+
+; Read a number
+SCRIBE"Quantus numerus?"
+LEGONUMERUS
+SCRIBE"Numerus tuus est:"
+SCRIBENUMERUS
+
+; Do some arithmetic with the input
+SUMMAESTADDENUMERUMNUMERO
+SCRIBE"Numerus + numerus ="
+SCRIBESUMMA

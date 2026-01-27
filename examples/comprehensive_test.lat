@@ -1,0 +1,49 @@
+; Comprehensive LATIN test program
+; Tests all major features
+
+; Variables and assignment
+SITNUMERUS
+SITPRIMUS
+SITSECUNDUS
+SITTERTIUS
+
+; Basic assignment
+NUMERUSESTXLII
+SCRIBENUMERUM        ; Should output: XLII
+
+; Addition
+PRIMUSESTX
+SECUNDUSESTXX
+TERTIUSESTADDEPRIMUMSECUNDO
+SCRIBETERTIUM        ; Should output: XXX
+
+; Subtraction  
+TERTIUSESTDEMETERTIUMX
+SCRIBETERTIUM        ; Should output: XX
+
+; Multiplication
+PRIMUSESTV
+SECUNDUSESTIV
+TERTIUSESTMVLTIPLICAPRIMUMSECUNDUM
+SCRIBETERTIUM        ; Should output: XX
+
+; Division
+TERTIUSESTDVCETERTIOV
+SCRIBETERTIUM        ; Should output: IV
+
+; Conditionals
+SINUMERUSAEQUATXLII
+SCRIBENUMERUM        ; Should output: XLII
+FINIS
+
+; Greater than
+SINUMERUSMAIVSX
+SCRIBENUMERUM        ; Should output: XLII
+FINIS
+
+; Loop (count down from V to I)
+NUMERUSESTV
+DUMNUMERUSMAIVSNIHIL ; while NUMERUS > 0
+SCRIBENUMERUM        ; Should output: V IV III II I
+NUMERUSESTDEMENUMEROI
+FINIS

@@ -1,0 +1,16 @@
+; LATIN example - Interactive calculator
+; User inputs two numbers and sees their sum
+
+SITPRIMUS
+SITSECUNDUS
+SITSUMMA
+
+SCRIBE"Primus numerus?"
+LEGOPRIMUM
+SCRIBE"Secundus numerus?"
+LEGOSECUNDUM
+
+SUMMAESTADDEPRIMUMSECUNDO
+
+SCRIBE"Summa est:"
+SCRIBESUMMA

@@ -1,0 +1,17 @@
+; Test INCIPITCVM with two variables
+SITNOMEN
+SITPRAEFIXVM
+SITRESULTAT
+
+NOMENEST"CAESAR"
+PRAEFIXVMEST"CAE"
+
+; Test with nominative + nominative
+RESULTATESTINCIPITCVMNOMENPRAEFIXVM
+SCRIBE"Using both nominative:"
+SCRIBERESULTAT
+
+; Test with nominative + ablative (proper Latin grammar)
+RESULTATESTINCIPITCVMNOMENPRAEFIXO
+SCRIBE"Using nominative + ablative:"
+SCRIBERESULTAT

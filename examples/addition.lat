@@ -8,4 +8,4 @@ SITTERTIUS           ; declare result
 PRIMUSESTXX          ; PRIMUS = 20
 SECUNDUSESTXXII      ; SECUNDUS = 22
 TERTIUSESTADDEPRIMUMSECUNDO  ; add PRIMUM (acc) to SECONDO (dat)
-SCRIBETERTIUM        ; print result (outputs: 42)
+SCRIBETERTIUM        ; print result (outputs: XLII)

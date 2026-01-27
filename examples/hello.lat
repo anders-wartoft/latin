@@ -3,4 +3,4 @@
 
 SITNUMERUS           ; declare variable NUMERUS
 NUMERUSESTXLII       ; assign 42 to NUMERUS
-SCRIBENUMERUM        ; print NUMERUS (outputs: 42)
+SCRIBENUMERUM        ; print NUMERUS (outputs: XLII)

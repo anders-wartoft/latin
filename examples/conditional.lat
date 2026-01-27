@@ -8,4 +8,4 @@ SINUMERUSAEQUATX     ; if NUMERUS equals 10
 SCRIBENUMERUM        ; then print it
 FINIS                ; end if
 
-; This will output: 10
+; This will output: X
