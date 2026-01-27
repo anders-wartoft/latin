@@ -1,0 +1,6 @@
+; LATIN example program - Hello World (number edition)
+; Demonstrates basic variable declaration and output
+
+SITNUMERUS           ; declare variable NUMERUS
+NUMERUSESTXLII       ; assign 42 to NUMERUS
+SCRIBENUMERUM        ; print NUMERUS (outputs: 42)

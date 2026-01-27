@@ -1,0 +1,11 @@
+; LATIN example - Addition
+; Demonstrates arithmetic with ADDE (proper dative case)
+
+SITPRIMUS            ; declare first number
+SITSECUNDUS          ; declare second number
+SITTERTIUS           ; declare result
+
+PRIMUSESTXX          ; PRIMUS = 20
+SECUNDUSESTXXII      ; SECUNDUS = 22
+TERTIUSESTADDEPRIMUMSECUNDO  ; add PRIMUM (acc) to SECONDO (dat)
+SCRIBETERTIUM        ; print result (outputs: 42)

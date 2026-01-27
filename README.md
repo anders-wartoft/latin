@@ -34,6 +34,42 @@ Common examples by declension:
 - Fourth declension: MANUS (hand), GRADUS (step)
 - Fifth declension: RES (thing), DIES (day)
 
+**Latin Cases:**
+LATIN uses the traditional Latin case system to determine the grammatical role of variables in statements:
+
+- **Nominative** - The subject case, used for:
+  - The variable being declared after SIT
+  - The left side of assignments (before EST)
+  - The subject of comparisons (before AEQUAT)
+  - Example: NUMERUS, PRIMUS, AMICUS
+
+- **Accusative** - The direct object case, used for:
+  - The object being printed with SCRIBE
+  - The thing being added (first argument to ADDE)
+  - The thing being subtracted (first argument to DEME)
+  - The right side of comparisons (after AEQUAT)
+  - Example: NUMERUM, PRIMUM, AMICUM (typically -UM ending)
+
+- **Dative** - The indirect object case ("to" or "for"), used for:
+  - The recipient in addition (second argument to ADDE)
+  - Meaning "add X to Y" where Y is in dative
+  - Example: NUMERO, PRIMO, AMICO (typically -O ending in 2nd declension)
+
+- **Ablative** - The separation case ("from" or "by means of"), used for:
+  - The source in subtraction (second argument to DEME)
+  - Meaning "subtract [accusative] from [ablative]"
+  - The case determines the role: DEME NUMERUM (acc) PRIMO (abl) = "subtract NUMERUM from PRIMO"
+  - If you swap the cases, you swap the roles: DEME PRIMUM (acc) NUMERO (abl) = "subtract PRIMUM from NUMERO"
+  - Example: NUMERO, PRIMO, AMICO (same as dative in 2nd declension)
+
+- **Genitive** - The possessive case ("of")
+  - Reserved for future use in LATIN
+  - Example: NUMERI, PRIMI, AMICI
+
+- **Vocative** - The address case (calling someone)
+  - Reserved for future use in LATIN
+  - Example: NUMERE, PRIME, AMICE
+
 When using variables in different contexts, they must be declined to the appropriate case (nominative, genitive, dative, accusative, ablative, or vocative) according to their grammatical function in the statement.
 
 Example:
@@ -79,15 +115,7 @@ To avoid ambiguity, use well-formed Latin nouns from standard declensions.
 
 ### Numbers
 
-In LATIN, numbers are represented using Latin words instead of digits. Here are some common numbers and their LATIN representations:
-
-- 1: UNUS (masculine), UNA (feminine), UNUM (neuter)
-- 2: DUO (masculine), DUA (feminine), DU
-- 3: TRES (masculine/feminine), TRIA (neuter)
-- 4: QUATTUOR
-- 5: QUIN
-
-You can also use roman numerals for numbers:
+In LATIN, numbers are represented using roman numerals for numbers:
 
 - I: 1
 - V: 5
@@ -103,6 +131,20 @@ Examples:
 MXXIV  ; represents 1024
 DCCCXC  ; represents 890
 ~~~
+
+### Comments
+
+Comments in LATIN begin with a semicolon (`;`) and extend to the end of the line. Comments are ignored by the parser and can be used to explain code or add notes.
+
+Example:
+
+~~~latin
+SITNUMERUS           ; declare a variable
+NUMERUSESTXLII       ; set it to 42
+SCRIBENUMERUM        ; output the value
+~~~
+
+Comments allow programmers to document their Latin grammar choices and explain the meaning of variable names without affecting program execution.
 
 ### Control Structures
 
@@ -172,4 +214,4 @@ PRINTAAMICUS           ; prints 3
 
 ## Community and Resources
 
-Join the LATIN programming community to share your projects, ask questions, and learn from others. Visit our [GitHub repository] ()
+Join the LATIN programming community to share your projects, ask questions, and learn from others. Visit our [GitHub repository] ([https://github.com/anders-wartoft/latin](https://github.com/anders-wartoft/latin))
