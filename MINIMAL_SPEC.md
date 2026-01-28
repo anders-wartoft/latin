@@ -1,6 +1,6 @@
 # LATIN Minimal Language Specification
 
-Version: 0.1 (Minimal Viable Prank)
+Version: 0.2 (Feature-Complete Edition)
 
 ## Overview
 
@@ -44,7 +44,9 @@ SITNUMERUS     ; declare NUMERUS (number)
 NUMERUSESTX    ; assign 10 to NUMERUS
 ```
 
-## Keywords (5 Total)
+## Keywords (Extended Set)
+
+Core keywords:
 
 1. **SIT** - Variable declaration ("let it be")
 2. **EST** - Assignment/comparison ("is")
@@ -52,18 +54,42 @@ NUMERUSESTX    ; assign 10 to NUMERUS
 4. **FINIS** - End block ("end")
 5. **SCRIBE** - Output ("write")
 
-## Operations (3 Total)
+Additional keywords:
+6. **DUM** - While loop ("while")
+7. **ALITER** - Else clause ("otherwise")
+8. **FAC** - Function declaration ("do/make")
+9. **REDDO** - Return value ("give back")
+10. **AVDI** - Log to stderr ("listen/hear")
+11. **NOTA** - Debug log to stderr ("note/mark")
+12. **LEGE** - Read input ("read")
+13. **IACE** - Throw exception ("throw")
+14. **CAPE** - Catch exception ("catch")
+
+## Operations (Extended Set)
+
+Arithmetic operations:
 
 1. **ADDE** - Addition ("add")
    - Usage: `ADDE[accusative][dative]` - "add [accusative] to [dative]"
-   - Accusative: the thing being added
-   - Dative: the base/recipient ("to" what)
 2. **DEME** - Subtraction ("subtract")
    - Usage: `DEME[accusative][ablative]` - "subtract [accusative] from [ablative]"
-   - Accusative: the thing being removed
-   - Ablative: what it's removed from ("from" what)
-3. **AEQUAT** - Equals comparison ("equals")
-   - Usage: `[nominative]AEQUAT[accusative]`
+3. **DUC** - Multiplication ("lead/multiply")
+   - Usage: `DUC[accusative][ablative]` - "multiply [accusative] by [ablative]"
+4. **DIVIDE** - Division ("divide")
+   - Usage: `DIVIDE[accusative][ablative]` - "divide [accusative] by [ablative]"
+
+Comparison operations:
+5. **AEQUAT** - Equals comparison ("equals")
+6. **MAIOR** - Greater than ("greater")
+7. **MINOR** - Less than ("lesser")
+
+String operations (on string variables):
+8. **INCIPIT** - Starts with ("begins")
+9. **DESINIT** - Ends with ("ends")
+10. **CONTINET** - Contains ("contains")
+11. **INDEX** - Find position ("index")
+
+Note: String operations use the genitive case for the search pattern
 
 ## Grammar Rules
 
@@ -75,7 +101,9 @@ NUMERUSESTX    ; assign 10 to NUMERUS
   - **Nominative**: subject, left side of assignment
   - **Accusative**: direct object, the thing being acted upon
   - **Dative**: indirect object, "to" or "for" (used with ADDE)
-  - **Ablative**: "from" or "by means of" (used with DEME)
+  - **Ablative**: "from" or "by means of" (used with DEME, DUC, DIVIDE)
+  - **Genitive**: possession, "of" (used for struct field access)
+  - **Vocative**: direct address (used in exception handling with CAPE)
 
 ### Common Variable Examples
 
@@ -264,20 +292,25 @@ For the minimal implementation, errors should be simple:
 - **Invalid syntax**: "ERRATUM: Syntax incorrecta" (incorrect syntax)
 - **Case mismatch**: "ERRATUM: Casus grammaticus incorrectus" (wrong grammatical case)
 
-## What's Explicitly NOT in Minimal Spec
+## Features Now Implemented
 
-To keep this minimal, we're excluding:
+The language has grown beyond the minimal spec and now includes:
 
-- ❌ Loops (DUM/while)
-- ❌ Functions (FAC/REDDO)
-- ❌ String/text output
-- ❌ User input
-- ❌ Multiplication/division
-- ❌ Multiple conditions
-- ❌ ELSE clauses
-- ❌ Comments
+- ✅ While loops (DUM)
+- ✅ Functions with parameters and return values (FAC/REDDO)
+- ✅ String literals and text output (using quotes)
+- ✅ User input (LEGE)
+- ✅ Multiplication and division (DUC/DIVIDE)
+- ✅ String comparison operations
+- ✅ ELSE clauses (ALITER)
+- ✅ Comments (semicolons)
+- ✅ Logging to stderr (AVDI/NOTA)
+- ✅ Exception handling (IACE/CAPE with vocative case)
+- ✅ Struct/object field access using genitive case
+- ✅ String operations (starts with, ends with, contains, index)
+- ✅ Automatic declension generation for new variables
 
-These can be added in later versions!
+For complete feature documentation, see README.md and FEATURES.md
 
 ## Next Steps
 
