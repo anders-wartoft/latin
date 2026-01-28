@@ -13,6 +13,22 @@ LATIN is an acronym for `Latin Ain't This Insufferable Normally`. We normally di
 
 ## Getting Started
 
+### Hello World!
+
+The traditional first program - printing "Hello World!" to the screen:
+
+```latin
+SCRIBE"Hello World!"
+```
+
+That's it! Just use `SCRIBE` (Latin for "write") followed by a string in quotes.
+
+Output:
+
+```latin
+Hello World!
+```
+
 ### Variables
 
 In LATIN, variables are declared using the `SIT` keyword (from Latin "sit" meaning "let it be") followed by the variable name. Variable names must consist of uppercase letters only and follow the normal Latin grammar rules for nouns. Variables can hold either integers (represented as Roman numerals) or strings (text in quotes).
