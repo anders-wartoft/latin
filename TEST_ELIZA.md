@@ -7,6 +7,7 @@ python3 latin.py examples/eliza.lat
 ```
 
 Test interactions:
+
 1. Type `sum tristis` → responds "Cur tristis es?" (Why are you sad?)
 2. Type `sum felix` → responds "Gaudeo!" (I rejoice!)
 3. Type `mater mea` → responds "Dic mihi de matre tua." (Tell me about your mother.)
@@ -16,6 +17,7 @@ Test interactions:
 7. Type `VALE` → exits with "Vale! Cura ut valeas." (Farewell! Take care!)
 
 The program now correctly:
+
 - Loops continuously until VALE is typed
 - Checks all keywords on each iteration
 - Multiple keywords can match (e.g., "mater et pater")

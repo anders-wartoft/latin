@@ -6,10 +6,10 @@
 
 - ✅ **Roman Numeral I/O** - All numbers input/output as Roman numerals
 - ✅ **No-space parsing** - Programs have no whitespace between words
-- ✅ **Latin grammar** - Proper noun declensions (nominative, accusative, dative, ablative)
+- ✅ **Latin grammar** - Proper noun declensions (all 6 cases: nominative, accusative, dative, ablative, genitive, vocative)
 - ✅ **Comments** - Semicolon (`;`) comments
 
-### Keywords (13 total)
+### Keywords (18 total)
 
 - ✅ SIT - Variable declaration
 - ✅ EST - Assignment
@@ -18,7 +18,14 @@
 - ✅ DUM - While loop
 - ✅ FINIS - End block
 - ✅ SCRIBE - Print output
-- ✅ LEGO - Read user input
+- ✅ LEGE - Read user input
+- ✅ FAC - Function declaration
+- ✅ REDDO - Return value
+- ✅ VOCA - Call function
+- ✅ AVDI - Log to stderr
+- ✅ NOTA - Debug log to stderr
+- ✅ IACE - Throw exception
+- ✅ CAPE - Catch exception
 
 ### Operations (12 total)
 
@@ -53,7 +60,15 @@
 
 - ✅ Conditionals with SI/ALITER/FINIS
 - ✅ Loops with DUM/FINIS
+- ✅ Functions with FAC/REDDO/VOCA
+- ✅ Exception handling with IACE/CAPE (using vocative case)
 - ✅ Multiple comparison operators
+
+### Advanced Features
+
+- ✅ **Structs/Objects** - Field access using genitive case (NOMENSERVII = "name of servant")
+- ✅ **Logging** - AVDI and NOTA write to stderr
+- ✅ **Exception handling** - IACE throws, CAPE catches (uses vocative case)
 
 ### Latin Nouns (32+ in declension table)
 
@@ -83,9 +98,18 @@
 - ✅ countdown.lat - Countdown loop
 - ✅ strings.lat - String literals and concatenation
 - ✅ string_ops.lat - String comparison operations
-- ✅ input.lat - User input with LEGO
+- ✅ input.lat - User input with LEGE
 - ✅ calculator.lat - Interactive calculator
+- ✅ greeting.lat - User greeting program
+- ✅ function.lat - Function definition and calls
+- ✅ logging.lat - Stderr logging with AVDI/NOTA
+- ✅ exception_simple.lat - Basic exception handling
+- ✅ exceptions.lat - Advanced exception handling
+- ✅ division_by_zero.lat - Exception handling example
+- ✅ struct.lat - Object-oriented programming with genitive
+- ✅ eliza.lat - ELIZA chatbot implementation
 - ✅ comprehensive_test.lat - All features
+- ✅ test_two_vars.lat - Variable testing
 
 ### Documentation
 
@@ -134,16 +158,19 @@ latin.py
 6. **Latin errors (default)** - "ERRATUM: non intellegitur"
 7. **Ambiguous programs** - Documented as a "feature"
 
+A programming language that requires proper Latin declensions to compile is definitely a unique concept. The fact that you have to know whether to use nominative, accusative, dative, or ablative case just to write a loop is pretty unique.
+
+Plus, the genitive case for struct field access (NOMENSERVII = "name of servant") and vocative case for exception handling are genuinely creative uses of Latin grammar in a programming context. It's both educational and hilarious.
+
 ## Future Possibilities
 
 ### Not Yet Implemented
 
-- ❌ Functions (FAC/REDDO)
 - ❌ Arrays/lists
-- ❌ File I/O
-- ❌ More declensions (genitive, vocative)
+- ❌ File I/O (beyond user input/output)
 - ❌ Adjectives
-- ❌ Verb conjugations
+- ❌ Verb conjugations (beyond existing keywords)
+- ❌ Additional declensions beyond the 6 cases
 
 ### Extension Ideas
 

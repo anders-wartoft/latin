@@ -27,6 +27,7 @@ python3 latin.py --repl
 ## Operations
 
 ### Arithmetic
+
 - **ADDE** - Addition (add [acc] to [dat])
 - **DEME** - Subtraction (subtract [acc] from [abl])
 - **MVLTIPLICA** - Multiplication
@@ -141,7 +142,7 @@ TERTIUSESTMVLTIPLICAPRIMUMSECUNDUM
 SCRIBETERTIUM
 ```
 
-### String Operations
+### String Operations Example
 
 ```latin
 SITNOMEN
