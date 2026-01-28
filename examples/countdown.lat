@@ -1,8 +1,13 @@
-SITNUMERUS
-NUMERUSESTV
+; LATIN example - Countdown
+; Demonstrates DUM (while) loop counting down from 5 to 1
+
+SITNUMERUS           ; declare counter
+NUMERUSESTV          ; start at 5
 SCRIBE"Countdown loop test:"
-DUMNUMERUSMAIVSNIHIL
-SCRIBENUMERUM
-NUMERUSESTDEMENUMEROI
-FINIS
+DUMNUMERUSMAIVSNIHIL ; while NUMERUS > 0
+SCRIBENUMERUM        ; print current value
+NUMERUSESTDEMENUMEROI ; subtract 1
+FINIS                ; end loop
 SCRIBE"Loop completed!"
+
+; Output: V IV III II I

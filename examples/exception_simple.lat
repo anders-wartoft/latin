@@ -1,0 +1,21 @@
+; LATIN example - Simple exception test
+; Demonstrates throwing and catching exceptions with vocative case
+
+SITERROR
+SITNUMERUS
+
+NOTA"Before exception handler"
+
+; Set up exception handler
+CAPEERROR
+NOTA"Caught an error!"
+SCRIBENUMERUM
+FINIS
+
+NOTA"After handler setup, before throw"
+NUMERUSESTXLII
+
+; Throw the exception
+IACEERROR"Test error message"
+
+NOTA"This should not print"

@@ -1,0 +1,21 @@
+; LATIN example - Automatic exception handling for division by zero
+; Demonstrates automatic ERROR exception when dividing by zero
+
+SITERROR
+SITNUMERUS
+SITSUMMA
+
+; Set up error handler for division by zero
+CAPEERROR
+NOTA"Error: Cannot divide by zero!"
+SCRIBE"Division failed gracefully"
+FINIS
+
+NOTA"Attempting risky division..."
+NUMERUSESTX
+SUMMAESTNIHIL
+
+; This will throw ERROR exception automatically
+NUMERUSESTDVCENUMERUSSUMMA
+
+SCRIBE"This line will not execute"

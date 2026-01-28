@@ -1,3 +1,7 @@
+; LATIN example - ELIZA chatbot
+; A psychotherapy chatbot that responds to emotional keywords
+; Demonstrates looping, string operations, and complex conditionals
+
 SITINPUTVM
 SITCONTINVA
 SITRESULTAT

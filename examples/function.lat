@@ -1,0 +1,21 @@
+; LATIN example - Functions
+; Demonstrates FAC (define), VOCA (call), and REDDO (return)
+; Shows proper Latin case usage: nominative for definition, accusative for calls
+
+SITADDITOR           ; function name
+SITPRIMUS            ; first parameter
+SITSECUNDUS          ; second parameter
+SITRESULTAT          ; return value
+SITALPHA             ; first argument
+SITBETA              ; second argument
+SITSUMMA             ; result variable
+FACADDITORPRIMOSECUNDO  ; define ADDITOR with parameters PRIMO, SECONDO (dative)
+RESULTATESTADDEPRIMUMSECUNDUM  ; add PRIMUM + SECUNDUM
+REDDORESULTAT        ; return RESULTAT (accusative)
+FINIS                ; end function
+ALPHAESTX            ; ALPHA = 10
+BETAESTV             ; BETA = 5
+SUMMAESTVOCAADDITOREMALPHABETA  ; call ADDITOREM (accusative) with ALPHA, BETA
+SCRIBESUMMA          ; print result
+
+; Output: XV (15)

@@ -10,6 +10,13 @@ import sys
 from typing import Dict, List, Optional, Tuple
 
 
+class LatinExceptionThrown(Exception):
+    """Raised when a LATIN exception should be thrown (e.g., division by zero)."""
+    def __init__(self, handler_line: int):
+        self.handler_line = handler_line
+        super().__init__()
+
+
 class RomanNumeralParser:
     """Parse Roman numerals to integers and vice versa."""
     
@@ -68,52 +75,54 @@ class LatinDeclension:
     # Expanded declension table
     DECLENSIONS = {
         # Second declension masculine
-        'NUMERUS': {'acc': 'NUMERUM', 'dat': 'NUMERO', 'abl': 'NUMERO'},
-        'PRIMUS': {'acc': 'PRIMUM', 'dat': 'PRIMO', 'abl': 'PRIMO'},
-        'SECUNDUS': {'acc': 'SECUNDUM', 'dat': 'SECUNDO', 'abl': 'SECUNDO'},
-        'TERTIUS': {'acc': 'TERTIUM', 'dat': 'TERTIO', 'abl': 'TERTIO'},
-        'QUARTUS': {'acc': 'QUARTUM', 'dat': 'QUARTO', 'abl': 'QUARTO'},
-        'QUINTUS': {'acc': 'QUINTUM', 'dat': 'QUINTO', 'abl': 'QUINTO'},
-        'MAXIMVS': {'acc': 'MAXIMVM', 'dat': 'MAXIMO', 'abl': 'MAXIMO'},
-        'AMICUS': {'acc': 'AMICUM', 'dat': 'AMICO', 'abl': 'AMICO'},
-        'SERVUS': {'acc': 'SERVUM', 'dat': 'SERVO', 'abl': 'SERVO'},
-        'DOMINUS': {'acc': 'DOMINUM', 'dat': 'DOMINO', 'abl': 'DOMINO'},
-        'FILIUS': {'acc': 'FILIUM', 'dat': 'FILIO', 'abl': 'FILIO'},
-        'ANNUS': {'acc': 'ANNUM', 'dat': 'ANNO', 'abl': 'ANNO'},
-        'LIBER': {'acc': 'LIBRUM', 'dat': 'LIBRO', 'abl': 'LIBRO'},
-        'VENTER': {'acc': 'VENTREM', 'dat': 'VENTRI', 'abl': 'VENTRE'},
-        'INDEX': {'acc': 'INDICEM', 'dat': 'INDICI', 'abl': 'INDICE'},
-        'RESULTAT': {'acc': 'RESULTATUM', 'dat': 'RESULTATO', 'abl': 'RESULTATO'},
+        'NUMERUS': {'acc': 'NUMERUM', 'dat': 'NUMERO', 'abl': 'NUMERO', 'voc': 'NUMERE'},
+        'PRIMUS': {'acc': 'PRIMUM', 'dat': 'PRIMO', 'abl': 'PRIMO', 'voc': 'PRIME'},
+        'SECUNDUS': {'acc': 'SECUNDUM', 'dat': 'SECUNDO', 'abl': 'SECUNDO', 'voc': 'SECUNDE'},
+        'TERTIUS': {'acc': 'TERTIUM', 'dat': 'TERTIO', 'abl': 'TERTIO', 'voc': 'TERTIE'},
+        'QUARTUS': {'acc': 'QUARTUM', 'dat': 'QUARTO', 'abl': 'QUARTO', 'voc': 'QUARTE'},
+        'QUINTUS': {'acc': 'QUINTUM', 'dat': 'QUINTO', 'abl': 'QUINTO', 'voc': 'QUINTE'},
+        'MAXIMVS': {'acc': 'MAXIMVM', 'dat': 'MAXIMO', 'abl': 'MAXIMO', 'voc': 'MAXIME'},
+        'AMICUS': {'acc': 'AMICUM', 'dat': 'AMICO', 'abl': 'AMICO', 'voc': 'AMICE'},
+        'SERVUS': {'acc': 'SERVUM', 'dat': 'SERVO', 'abl': 'SERVO', 'voc': 'SERVE'},
+        'DOMINUS': {'acc': 'DOMINUM', 'dat': 'DOMINO', 'abl': 'DOMINO', 'voc': 'DOMINE'},
+        'FILIUS': {'acc': 'FILIUM', 'dat': 'FILIO', 'abl': 'FILIO', 'voc': 'FILI'},
+        'ANNUS': {'acc': 'ANNUM', 'dat': 'ANNO', 'abl': 'ANNO', 'voc': 'ANNE'},
+        'LIBER': {'acc': 'LIBRUM', 'dat': 'LIBRO', 'abl': 'LIBRO', 'voc': 'LIBER'},
+        'VENTER': {'acc': 'VENTREM', 'dat': 'VENTRI', 'abl': 'VENTRE', 'voc': 'VENTER'},
+        'INDEX': {'acc': 'INDICEM', 'dat': 'INDICI', 'abl': 'INDICE', 'voc': 'INDEX'},
+        'RESULTAT': {'acc': 'RESULTATUM', 'dat': 'RESULTATO', 'abl': 'RESULTATO', 'voc': 'RESULTAT'},
+        'ERROR': {'acc': 'ERROREM', 'dat': 'ERRORI', 'abl': 'ERRORE', 'voc': 'ERROR'},
+        'EXCEPTIO': {'acc': 'EXCEPTIONEM', 'dat': 'EXCEPTIONI', 'abl': 'EXCEPTIONE', 'voc': 'EXCEPTIO'},
         # Second declension neuter
-        'BELLVM': {'acc': 'BELLVM', 'dat': 'BELLO', 'abl': 'BELLO'},
-        'VERBVM': {'acc': 'VERBVM', 'dat': 'VERBO', 'abl': 'VERBO'},
-        'DONVM': {'acc': 'DONVM', 'dat': 'DONO', 'abl': 'DONO'},
-        'PRAEFIXVM': {'acc': 'PRAEFIXVM', 'dat': 'PRAEFIXO', 'abl': 'PRAEFIXO'},
+        'BELLVM': {'acc': 'BELLVM', 'dat': 'BELLO', 'abl': 'BELLO', 'voc': 'BELLVM'},
+        'VERBVM': {'acc': 'VERBVM', 'dat': 'VERBO', 'abl': 'VERBO', 'voc': 'VERBVM'},
+        'DONVM': {'acc': 'DONVM', 'dat': 'DONO', 'abl': 'DONO', 'voc': 'DONVM'},
+        'PRAEFIXVM': {'acc': 'PRAEFIXVM', 'dat': 'PRAEFIXO', 'abl': 'PRAEFIXO', 'voc': 'PRAEFIXVM'},
         # First declension feminine
-        'PUELLA': {'acc': 'PUELLAM', 'dat': 'PUELLAE', 'abl': 'PUELLA'},
-        'ROSA': {'acc': 'ROSAM', 'dat': 'ROSAE', 'abl': 'ROSA'},
-        'AQUA': {'acc': 'AQUAM', 'dat': 'AQUAE', 'abl': 'AQUA'},
-        'VITA': {'acc': 'VITAM', 'dat': 'VITAE', 'abl': 'VITA'},
-        'TERRA': {'acc': 'TERRAM', 'dat': 'TERRAE', 'abl': 'TERRA'},
-        'SUMMA': {'acc': 'SUMMAM', 'dat': 'SUMMAE', 'abl': 'SUMMA'},
+        'PUELLA': {'acc': 'PUELLAM', 'dat': 'PUELLAE', 'abl': 'PUELLA', 'voc': 'PUELLA'},
+        'ROSA': {'acc': 'ROSAM', 'dat': 'ROSAE', 'abl': 'ROSA', 'voc': 'ROSA'},
+        'AQUA': {'acc': 'AQUAM', 'dat': 'AQUAE', 'abl': 'AQUA', 'voc': 'AQUA'},
+        'VITA': {'acc': 'VITAM', 'dat': 'VITAE', 'abl': 'VITA', 'voc': 'VITA'},
+        'TERRA': {'acc': 'TERRAM', 'dat': 'TERRAE', 'abl': 'TERRA', 'voc': 'TERRA'},
+        'SUMMA': {'acc': 'SUMMAM', 'dat': 'SUMMAE', 'abl': 'SUMMA', 'voc': 'SUMMA'},
         # Third declension
-        'REX': {'acc': 'REGEM', 'dat': 'REGI', 'abl': 'REGE'},
-        'CIVIS': {'acc': 'CIVEM', 'dat': 'CIVI', 'abl': 'CIVE'},
-        'CORPVS': {'acc': 'CORPVS', 'dat': 'CORPORI', 'abl': 'CORPORE'},
-        'TEMPVS': {'acc': 'TEMPVS', 'dat': 'TEMPORI', 'abl': 'TEMPORE'},
-        'ITER': {'acc': 'ITER', 'dat': 'ITINERI', 'abl': 'ITINERE'},
-        'NOMEN': {'acc': 'NOMEN', 'dat': 'NOMINI', 'abl': 'NOMINE'},
-        'AETAS': {'acc': 'AETATEM', 'dat': 'AETATI', 'abl': 'AETATE'},
-        'SALVTATIO': {'acc': 'SALVTATIONEM', 'dat': 'SALVTATIONI', 'abl': 'SALVTATIONE'},
-        'INPUTVM': {'acc': 'INPUTVM', 'dat': 'INPUTO', 'abl': 'INPUTO'},
-        'CONTINVA': {'acc': 'CONTINVAM', 'dat': 'CONTINVAE', 'abl': 'CONTINVA'},
-        'RESPONSUM': {'acc': 'RESPONSUM', 'dat': 'RESPONSO', 'abl': 'RESPONSO'},
+        'REX': {'acc': 'REGEM', 'dat': 'REGI', 'abl': 'REGE', 'voc': 'REX'},
+        'CIVIS': {'acc': 'CIVEM', 'dat': 'CIVI', 'abl': 'CIVE', 'voc': 'CIVIS'},
+        'CORPVS': {'acc': 'CORPVS', 'dat': 'CORPORI', 'abl': 'CORPORE', 'voc': 'CORPVS'},
+        'TEMPVS': {'acc': 'TEMPVS', 'dat': 'TEMPORI', 'abl': 'TEMPORE', 'voc': 'TEMPVS'},
+        'ITER': {'acc': 'ITER', 'dat': 'ITINERI', 'abl': 'ITINERE', 'voc': 'ITER'},
+        'NOMEN': {'acc': 'NOMEN', 'dat': 'NOMINI', 'abl': 'NOMINE', 'voc': 'NOMEN'},
+        'AETAS': {'acc': 'AETATEM', 'dat': 'AETATI', 'abl': 'AETATE', 'voc': 'AETAS'},
+        'SALVTATIO': {'acc': 'SALVTATIONEM', 'dat': 'SALVTATIONI', 'abl': 'SALVTATIONE', 'voc': 'SALVTATIO'},
+        'INPUTVM': {'acc': 'INPUTVM', 'dat': 'INPUTO', 'abl': 'INPUTO', 'voc': 'INPUTVM'},
+        'CONTINVA': {'acc': 'CONTINVAM', 'dat': 'CONTINVAE', 'abl': 'CONTINVA', 'voc': 'CONTINVA'},
+        'RESPONSUM': {'acc': 'RESPONSUM', 'dat': 'RESPONSO', 'abl': 'RESPONSO', 'voc': 'RESPONSUM'},
         # Fourth declension
-        'MANVS': {'acc': 'MANVM', 'dat': 'MANVI', 'abl': 'MANV'},
-        'GRADVS': {'acc': 'GRADVM', 'dat': 'GRADVI', 'abl': 'GRADV'},
+        'MANVS': {'acc': 'MANVM', 'dat': 'MANVI', 'abl': 'MANV', 'voc': 'MANVS'},
+        'GRADVS': {'acc': 'GRADVM', 'dat': 'GRADVI', 'abl': 'GRADV', 'voc': 'GRADVS'},
         # Fifth declension
-        'RES': {'acc': 'REM', 'dat': 'REI', 'abl': 'RE'},
-        'DIES': {'acc': 'DIEM', 'dat': 'DIEI', 'abl': 'DIE'},
+        'RES': {'acc': 'REM', 'dat': 'REI', 'abl': 'RE', 'voc': 'RES'},
+        'DIES': {'acc': 'DIEM', 'dat': 'DIEI', 'abl': 'DIE', 'voc': 'DIES'},
     }
     
     @classmethod
@@ -142,14 +151,19 @@ class LatinDeclension:
     def get_ablative(cls, nominative: str) -> Optional[str]:
         """Get the ablative form of a noun."""
         return cls.DECLENSIONS.get(nominative, {}).get('abl')
+    
+    @classmethod
+    def get_vocative(cls, nominative: str) -> Optional[str]:
+        """Get the vocative form of a noun."""
+        return cls.DECLENSIONS.get(nominative, {}).get('voc')
 
 
 class Tokenizer:
     """Tokenize LATIN source code."""
     
     KEYWORDS = ['SIT', 'EST', 'SI', 'ALITER', 'FINIS', 'SCRIBE', 'LEGO', 'ADDE', 'DEME', 'AEQUAT', 
-                'DUM', 'FAC', 'REDDO', 'DVCE', 'MVLTIPLICA', 'MAIVS', 'MINOR', 'IVNGE',
-                'INCIPITCVM', 'FINITVRCVM', 'CONTINET', 'INDICEDE']
+                'DUM', 'FAC', 'REDDO', 'VOCA', 'DVCE', 'MVLTIPLICA', 'MAIVS', 'MINOR', 'IVNGE',
+                'INCIPITCVM', 'FINITVRCVM', 'CONTINET', 'INDICEDE', 'IACE', 'CAPE', 'AVDI', 'NOTA']
     
     def __init__(self, declared_vars: set):
         self.declared_vars = declared_vars
@@ -252,6 +266,13 @@ class Tokenizer:
                     if len(abl) > best_length:
                         best_match = ('VARIABLE', var)
                         best_length = len(abl)
+                
+                # Check vocative
+                voc = LatinDeclension.get_vocative(var)
+                if voc and line[pos:].startswith(voc):
+                    if len(voc) > best_length:
+                        best_match = ('VARIABLE', var)
+                        best_length = len(voc)
             
             if best_match:
                 # Check if next token would be a keyword - if so, prefer shorter variable match
@@ -307,6 +328,13 @@ class LatinInterpreter:
         self.line_index = 0
         self.loop_starts = []  # Stack of (loop_start_line, depth_at_loop_start) tuples
         self.block_depth = 0  # Current nesting depth of SI/DUM/ALITER blocks
+        self.functions = {}  # {function_name: {'params': [], 'start_line': int, 'end_line': int}}
+        self.call_stack = []  # Stack of return addresses and saved variables
+        self.in_function_def = False  # Track if we're currently defining a function
+        self.exception_handlers = []  # Stack of (exception_type, handler_line) tuples
+        self.current_exception = None  # Currently thrown exception
+        self.exception_throw_line = None  # Line where exception was thrown
+        self.skip_handler_pop = False  # Don't pop handler when FINIS balances a skip
     
     def error(self, latin_msg: str, english_msg: str):
         """Raise error in Latin or English based on settings."""
@@ -338,6 +366,10 @@ class LatinInterpreter:
                     self.line_index = jump
                 else:
                     self.line_index += 1
+            except LatinExceptionThrown as e:
+                # Exception thrown during execution (e.g., division by zero)
+                # Jump to the handler
+                self.line_index = e.handler_line
             except Exception as e:
                 print(f"Error on line {self.line_index + 1}: {e}", file=sys.stderr)
                 sys.exit(1)
@@ -353,6 +385,19 @@ class LatinInterpreter:
         if tokens[0] == ('KEYWORD', 'FINIS'):
             self.skip_execution = False
             self.block_depth -= 1
+            
+            # Pop exception handler if this closes a CAPE block (but not if we're just balancing a skip)
+            if self.skip_handler_pop:
+                # Just balancing a CAPE skip - don't pop handler
+                self.skip_handler_pop = False
+            elif self.exception_handlers and self.exception_handlers[-1][1] <= self.line_index:
+                self.exception_handlers.pop()
+                # If we just handled an exception, end execution (jump past all lines)
+                if self.exception_throw_line is not None:
+                    self.exception_throw_line = None
+                    self.current_exception = None
+                    return len(self.lines)  # Jump past end to terminate
+            
             # If this ends a loop (depth returns to loop start depth), jump back
             if self.loop_starts and self.loop_starts[-1][1] == self.block_depth:
                 loop_start, _ = self.loop_starts.pop()
@@ -371,6 +416,62 @@ class LatinInterpreter:
             var_name = tokens[1][1]
             self.declared_vars.add(var_name)
             self.variables[var_name] = 0  # Default to 0 for compatibility
+            
+            # If variable not in DECLENSIONS, add it with automatic declension pattern
+            if var_name not in LatinDeclension.DECLENSIONS:
+                # Guess declension based on ending
+                if var_name.endswith('US'):
+                    # Second declension masculine like NUMERUS
+                    root = var_name[:-2]
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': root + 'UM',
+                        'dat': root + 'O',
+                        'abl': root + 'O',
+                        'voc': root + 'E'
+                    }
+                elif var_name.endswith('OR'):
+                    # Third declension like ADDITOR, ERROR
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': var_name + 'EM',
+                        'dat': var_name + 'I',
+                        'abl': var_name + 'E',
+                        'voc': var_name
+                    }
+                elif var_name.endswith('IO'):
+                    # Third declension like EXCEPTIO
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': var_name + 'NEM',
+                        'dat': var_name + 'NI',
+                        'abl': var_name + 'NE',
+                        'voc': var_name
+                    }
+                elif var_name.endswith('A'):
+                    # First declension feminine like SUMMA
+                    root = var_name[:-1]
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': root + 'AM',
+                        'dat': root + 'AE',
+                        'abl': root + 'A',
+                        'voc': root + 'A'
+                    }
+                elif var_name.endswith('VM') or var_name.endswith('UM'):
+                    # Second declension neuter
+                    root = var_name[:-2]
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': var_name,
+                        'dat': root + 'O',
+                        'abl': root + 'O',
+                        'voc': var_name
+                    }
+                else:
+                    # Default to second declension masculine pattern
+                    LatinDeclension.DECLENSIONS[var_name] = {
+                        'acc': var_name + 'M',
+                        'dat': var_name + 'O',
+                        'abl': var_name + 'O',
+                        'voc': var_name + 'E'
+                    }
+            
             return None
         
         # Handle SCRIBE (print)
@@ -390,6 +491,46 @@ class LatinInterpreter:
                     print(RomanNumeralParser.to_roman(value))
                 else:
                     print(value)
+            return None
+        
+        # Handle AVDI (debug print - with DEBUG prefix)
+        if tokens[0] == ('KEYWORD', 'AVDI'):
+            if len(tokens) != 2:
+                self.error("Syntax incorrecta post AVDI", "Invalid syntax after AVDI")
+            print("[DEBUG] ", end="", file=sys.stderr)
+            if tokens[1][0] == 'STRING':
+                print(tokens[1][1], file=sys.stderr)
+            elif tokens[1][0] == 'NUMBER':
+                print(RomanNumeralParser.to_roman(tokens[1][1]), file=sys.stderr)
+            elif tokens[1][0] == 'VARIABLE':
+                var_name = tokens[1][1]
+                if var_name not in self.variables:
+                    self.error(f"'{var_name}' non declaratur", f"Variable '{var_name}' not declared")
+                value = self.variables[var_name]
+                if isinstance(value, int):
+                    print(RomanNumeralParser.to_roman(value), file=sys.stderr)
+                else:
+                    print(value, file=sys.stderr)
+            return None
+        
+        # Handle NOTA (log print - with LOG prefix)
+        if tokens[0] == ('KEYWORD', 'NOTA'):
+            if len(tokens) != 2:
+                self.error("Syntax incorrecta post NOTA", "Invalid syntax after NOTA")
+            print("[LOG] ", end="", file=sys.stderr)
+            if tokens[1][0] == 'STRING':
+                print(tokens[1][1], file=sys.stderr)
+            elif tokens[1][0] == 'NUMBER':
+                print(RomanNumeralParser.to_roman(tokens[1][1]), file=sys.stderr)
+            elif tokens[1][0] == 'VARIABLE':
+                var_name = tokens[1][1]
+                if var_name not in self.variables:
+                    self.error(f"'{var_name}' non declaratur", f"Variable '{var_name}' not declared")
+                value = self.variables[var_name]
+                if isinstance(value, int):
+                    print(RomanNumeralParser.to_roman(value), file=sys.stderr)
+                else:
+                    print(value, file=sys.stderr)
             return None
         
         # Handle LEGO (read input)
@@ -418,6 +559,154 @@ class LatinInterpreter:
                 self.variables[var_name] = user_input
             
             return None
+        
+        # Handle IACE (throw exception)
+        if tokens[0] == ('KEYWORD', 'IACE'):
+            # IACE ERROR "message" or IACE ERROR
+            if len(tokens) < 2:
+                self.error("IACE requirit nomen exceptionis", "IACE requires exception name")
+            if tokens[1][0] != 'VARIABLE':
+                self.error("IACE requirit nomen exceptionis in vocativo", "IACE requires exception name in vocative")
+            
+            exception_name = tokens[1][1]
+            message = ""
+            if len(tokens) == 3 and tokens[2][0] == 'STRING':
+                message = tokens[2][1]
+            
+            # Store exception info and throw line
+            self.current_exception = {'type': exception_name, 'message': message}
+            self.exception_throw_line = self.line_index + 1  # Continue after this line when done handling
+            
+            # Look for exception handler
+            for handler_type, handler_line in reversed(self.exception_handlers):
+                if handler_type == exception_name:
+                    # Jump to handler
+                    return handler_line
+            
+            # No handler found - raise error
+            if message:
+                self.error(f"{exception_name}: {message}", f"{exception_name}: {message}")
+            else:
+                self.error(exception_name, exception_name)
+            
+            return None
+        
+        # Handle CAPE (catch exception)
+        if tokens[0] == ('KEYWORD', 'CAPE'):
+            # CAPE ERROR
+            if len(tokens) != 2:
+                self.error("CAPE requirit nomen exceptionis", "CAPE requires exception name")
+            if tokens[1][0] != 'VARIABLE':
+                self.error("CAPE requirit nomen exceptionis in vocativo", "CAPE requires exception name in vocative")
+            
+            exception_name = tokens[1][1]
+            
+            # Register exception handler (will be active until FINIS)
+            self.exception_handlers.append((exception_name, self.line_index + 1))
+            self.block_depth += 1
+            
+            # If we're entering the handler after an exception, clear it
+            if self.current_exception and self.current_exception['type'] == exception_name:
+                self.current_exception = None
+            else:
+                # Not handling an exception now, skip to FINIS
+                depth = 1
+                search_idx = self.line_index + 1
+                while search_idx < len(self.lines) and depth > 0:
+                    search_line = self.lines[search_idx].strip()
+                    if ';' in search_line:
+                        search_line = search_line.split(';')[0].strip()
+                    if search_line.startswith('CAPE') or search_line.startswith('SI') or search_line.startswith('DUM'):
+                        depth += 1
+                    elif search_line == 'FINIS':
+                        depth -= 1
+                    search_idx += 1
+                # Balance for FINIS
+                self.block_depth += 1
+                self.skip_handler_pop = True  # Don't pop handler, we want it to stay active
+                return search_idx - 1
+            
+            return None
+        
+        # Handle FAC (function definition)
+        if tokens[0] == ('KEYWORD', 'FAC'):
+            # FAC FUNCTION_NAME PARAM1 PARAM2 ...
+            if len(tokens) < 2:
+                self.error("FAC requirit nomen functionis", "FAC requires function name")
+            if tokens[1][0] != 'VARIABLE':
+                self.error("FAC requirit nomen functionis validum", "FAC requires valid function name")
+            
+            func_name = tokens[1][1]
+            params = []
+            
+            # Collect parameters (all should be variables in dative case)
+            for i in range(2, len(tokens)):
+                if tokens[i][0] != 'VARIABLE':
+                    self.error("Parametri debent esse variabiles", "Parameters must be variables")
+                params.append(tokens[i][1])
+            
+            # Find the matching FINIS for this function
+            depth = 1
+            search_idx = self.line_index + 1
+            while search_idx < len(self.lines) and depth > 0:
+                search_line = self.lines[search_idx].strip()
+                if ';' in search_line:
+                    search_line = search_line.split(';')[0].strip()
+                if search_line.startswith('FAC') or search_line.startswith('SI') or search_line.startswith('DUM'):
+                    depth += 1
+                elif search_line == 'FINIS':
+                    depth -= 1
+                search_idx += 1
+            
+            # Store function definition
+            self.functions[func_name] = {
+                'params': params,
+                'start_line': self.line_index + 1,
+                'end_line': search_idx - 2  # -2 because search_idx is after FINIS
+            }
+            
+            # Skip to FINIS (don't execute function body during definition)
+            self.block_depth += 1  # Balance for FINIS
+            return search_idx - 1
+        
+        # Handle REDDO (return from function)
+        if tokens[0] == ('KEYWORD', 'REDDO'):
+            if len(tokens) != 2:
+                self.error("REDDO requirit valorem", "REDDO requires a value")
+            
+            # Get return value
+            if tokens[1][0] == 'NUMBER':
+                return_value = tokens[1][1]
+            elif tokens[1][0] == 'STRING':
+                return_value = tokens[1][1]
+            elif tokens[1][0] == 'VARIABLE':
+                var_name = tokens[1][1]
+                if var_name not in self.variables:
+                    self.error(f"'{var_name}' non declaratur", f"Variable '{var_name}' not declared")
+                return_value = self.variables[var_name]
+            else:
+                self.error("REDDO requirit numerum, textum, aut variabilem", "REDDO requires number, string, or variable")
+            
+            # Pop call stack and restore context
+            if not self.call_stack:
+                self.error("REDDO extra functionem", "REDDO outside function")
+            
+            call_info = self.call_stack.pop()
+            return_line = call_info['return_line']
+            saved_vars = call_info['saved_vars']
+            
+            # If there was a calling variable, assign the return value to it
+            calling_var = self.variables.get('__CALLING_VAR__')
+            
+            # Restore variables (remove local params, restore globals)
+            self.variables = saved_vars.copy()
+            
+            # Assign return value to calling variable
+            if calling_var:
+                self.variables[calling_var] = return_value
+            
+            # Jump back to caller (next line after the call)
+            return return_line + 1
         
         # Handle DUM (while loop)
         if tokens[0] == ('KEYWORD', 'DUM'):
@@ -637,6 +926,14 @@ class LatinInterpreter:
                 self.variables[var_name] = result
                 return None
             
+            # VARIABLE EST VOCA ... (function call)
+            if len(tokens) >= 4 and tokens[2] == ('KEYWORD', 'VOCA'):
+                # Mark that we're expecting a return value
+                self.variables['__CALLING_VAR__'] = var_name
+                # Call function and jump to it
+                jump_addr = self.call_function(tokens[3:])
+                return jump_addr
+            
             self.error("Syntax incorrecta in assignatione", "Invalid assignment syntax")
         
         self.error("Syntax non cognita", "Unknown syntax")
@@ -722,10 +1019,78 @@ class LatinInterpreter:
             return values[0] * values[1]
         elif op == 'DVCE':
             if values[1] == 0:
-                self.error("Divisio per nihil", "Division by zero")
+                # Throw an ERROR exception that can be caught with CAPEERROR
+                if not self.exception_handlers:
+                    # No handler, use normal error
+                    self.error("Divisio per nihil", "Division by zero")
+                else:
+                    # Handler exists, throw catchable exception
+                    # Find ERROR handler
+                    for handler_type, handler_line in reversed(self.exception_handlers):
+                        if handler_type == 'ERROR':
+                            self.current_exception = {'type': 'ERROR', 'message': 'Divisio per nihil'}
+                            self.exception_throw_line = self.line_index + 1
+                            # Signal that we need to jump to handler
+                            raise LatinExceptionThrown(handler_line)
+                    # No ERROR handler found
+                    self.error("Divisio per nihil", "Division by zero")
             return values[0] // values[1]
         
         return 0
+    
+    def call_function(self, tokens: List[Tuple[str, str]]):
+        """Call a function with given arguments."""
+        if len(tokens) < 1:
+            self.error("VOCA requirit nomen functionis", "VOCA requires function name")
+        
+        # First token should be the function name (in accusative case)
+        if tokens[0][0] != 'VARIABLE':
+            self.error("VOCA requirit nomen functionis", "VOCA requires function name")
+        
+        func_name = tokens[0][1]
+        
+        # Check if function exists
+        if func_name not in self.functions:
+            self.error(f"Functio '{func_name}' non definitur", f"Function '{func_name}' not defined")
+        
+        func_def = self.functions[func_name]
+        params = func_def['params']
+        
+        # Get arguments
+        args = []
+        for i in range(1, len(tokens)):
+            token_type, token_value = tokens[i]
+            if token_type == 'NUMBER':
+                args.append(token_value)
+            elif token_type == 'STRING':
+                args.append(token_value)
+            elif token_type == 'VARIABLE':
+                if token_value not in self.variables:
+                    self.error(f"'{token_value}' non declaratur", f"Variable '{token_value}' not declared")
+                args.append(self.variables[token_value])
+            else:
+                self.error("Argumenta invalida", "Invalid arguments")
+        
+        # Check argument count
+        if len(args) != len(params):
+            self.error(f"Functio '{func_name}' requirit {len(params)} argumenta", 
+                      f"Function '{func_name}' requires {len(params)} arguments")
+        
+        # Save current variable state
+        saved_vars = self.variables.copy()
+        
+        # Bind parameters to arguments
+        for param, arg in zip(params, args):
+            self.variables[param] = arg
+        
+        # Save return address and variables on call stack
+        self.call_stack.append({
+            'return_line': self.line_index,
+            'saved_vars': saved_vars
+        })
+        
+        # Jump to function start
+        return func_def['start_line']
 
 
 def repl():

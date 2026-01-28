@@ -67,7 +67,8 @@ LATIN uses the traditional Latin case system to determine the grammatical role o
 
 - **Vocative** - The address case (calling someone)
   - Reserved for future use in LATIN
-  - Example: NUMERE, PRIME, AMICE
+  - Note: Function calls use **VOCA** (verb "I call") with **accusative** case, not vocative case
+  - Example vocative forms: NUMERE, PRIME, AMICE
 
 When using variables in different contexts, they must be declined to the appropriate case (nominative, genitive, dative, accusative, ablative, or vocative) according to their grammatical function in the statement.
 
@@ -329,12 +330,49 @@ SCRIBETERTIUM        ; outputs: L
 
 ### Functions
 
-LATIN supports function definitions and calls using Latin terminology.
+LATIN supports function definitions and calls using proper Latin grammar with different cases:
 
-*Note: Function support is planned for future releases.*
+- **FAC** [nominative function name] [dative parameters] - Define a function
+- **VOCA** [accusative function name] [accusative arguments] - Call a function  
+- **REDDO** [accusative return value] - Return from function
 
-- **FAC** (do/make) - function definition
-- **REDDO** (return) - return statement
+**Function Grammar:**
+
+- Functions are defined with nominative case ("this function is")
+- Functions are called with accusative case ("invoke this function")  
+- Parameters use dative case in definition ("for these parameters")
+- Arguments use accusative case in calls ("with these values")
+
+**Automatic Declension:**
+When you declare variables with SIT, LATIN automatically determines the proper declension pattern based on the ending:
+
+- **-US**: Second declension masculine (accusative: -UM, dative: -O)
+- **-OR**: Third declension (accusative: -OREM, dative: -ORI)  
+- **-A**: First declension feminine (accusative: -AM, dative: -AE)
+- **-VM/-UM**: Second declension neuter (accusative: same, dative: -O)
+
+Example:
+
+```latin
+; Define ADDITOR function (nominative) with parameters PRIMO, SECONDO (dative)
+SITADDITOR
+SITPRIMUS  
+SITSECUNDUS
+SITRESULTAT
+FACADDITORPRIMOSECUNDO
+RESULTATESTADDEPRIMUMSECUNDUM
+REDDORESULTAT
+FINIS
+
+; Call ADDITOREM (accusative) with X, Y (accusative)
+SITX
+SITY
+SITSUMMA
+XESTX
+YESTV
+SUMMAESTVOCAADDITOREMXY
+SCRIBESUMMA              ; outputs: XV (15)
+```
 
 ### User Input
 
@@ -482,6 +520,110 @@ SCRIBE"ELIZA: Quid accideret si id haberes?"
 FINIS
 SCRIBE""
 FINIS
+```
+
+## Exception Handling
+
+LATIN provides exception handling using the vocative case - the grammatical form used for direct address. When you want to "call out" to an exception, you use the vocative case of the exception type.
+
+### Keywords
+
+- `IACE` (imperative "throw!") - Throws an exception that can be caught by a handler
+- `CAPE` (imperative "catch!") - Sets up an exception handler
+
+### Exception Types
+
+- `ERROR` - General error exception (vocative: `ERROR`)
+- `EXCEPTIO` - General exception (vocative: `EXCEPTIO`)
+- Custom exceptions can be declared using `SIT` and will be automatically declined
+
+### Basic Exception Handling
+
+```latin
+; Declare exception type
+SITERROR
+
+; Set up exception handler
+CAPEERROR
+NOTA"An error occurred!"
+SCRIBE"Handling the error"
+FINIS
+
+; Throw an exception
+IACEERROR"Something went wrong!"
+
+SCRIBE"This won't execute"
+```
+
+### Automatic Exceptions
+
+Some operations automatically throw exceptions:
+
+**Division by Zero:**
+When dividing by zero using `DVCE`, an `ERROR` exception is automatically thrown if a `CAPEERROR` handler is active:
+
+```latin
+SITERROR
+SITNUMERUS
+SITSUMMA
+
+; Set up handler
+CAPEERROR
+NOTA"Cannot divide by zero!"
+FINIS
+
+NOTA"Attempting division..."
+NUMERUSESTX
+SUMMAESTNIHIL
+
+; This throws ERROR automatically
+NUMERUSESTDVCENUMERUSSUMMA
+
+SCRIBE"This won't run"
+```
+
+### Exception Flow
+
+1. `CAPE` registers an exception handler and skips the handler block initially
+2. Normal code execution continues
+3. When `IACE` is encountered (or automatic exception occurs), execution jumps to the handler
+4. Handler code executes
+5. When handler reaches `FINIS`, program terminates
+
+### Exception Messages
+
+Exceptions can include optional messages:
+
+```latin
+IACEERROR"Detailed error message"
+```
+
+## Debug and Logging
+
+LATIN provides imperative keywords for debug output and logging:
+
+- `AVDI` (imperative "listen!") - Outputs debug information with `[DEBUG]` prefix
+- `NOTA` (imperative "note!") - Outputs log information with `[LOG]` prefix
+
+Both keywords work like `SCRIBE` but add prefixes to distinguish different output types:
+
+```latin
+SITNUMERUS
+NUMERUSESTXLII
+
+NOTA"Program started"
+AVDI"Debug: checking NUMERUS value"
+AVDINUMERUM
+NOTA"Program finished"
+```
+
+Output:
+
+```text
+[LOG] Program started
+[DEBUG] Debug: checking NUMERUS value
+[DEBUG] XLII
+[LOG] Program finished
 ```
 
 ## Community and Resources

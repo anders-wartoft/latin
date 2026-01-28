@@ -1,0 +1,26 @@
+; LATIN example - Exception handling
+; Demonstrates IACE (throw) and CAPE (catch) with vocative case
+
+SITERROR
+SITNUMERUS
+SITSUMMA
+
+; Try division with error handling
+NUMERUSESTX
+SUMMAESTV
+
+; This will work fine
+SUMMAESTDVCENUMERUMSUMMA
+SCRIBE"Result:"
+SCRIBESUMMA
+
+; Set up error handler
+CAPEERROR
+NOTA"An error occurred!"
+SCRIBE"Caught exception in handler"
+FINIS
+
+; Throw an error manually
+IACEERROR"Something went wrong!"
+
+SCRIBE"This won't execute"

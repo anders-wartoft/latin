@@ -1,0 +1,24 @@
+; LATIN example - Debug and logging
+; Demonstrates AVDI (debug) and NOTA (log) output
+
+SITNUMERUS
+SITPRIMUS
+SITSECUNDUS
+
+NOTA"Program started"
+
+NUMERUSESTXLII
+AVDI"NUMERUS value:"
+AVDINUMERUM
+
+PRIMUSESTX
+SECUNDUSESTV
+
+NOTA"Performing addition..."
+NUMERUSESTADDEPRIMUMSECUNDO
+
+AVDI"Addition complete"
+SCRIBE"Result:"
+SCRIBENUMERUM
+
+NOTA"Program finished"
