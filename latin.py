@@ -75,54 +75,54 @@ class LatinDeclension:
     # Expanded declension table
     DECLENSIONS = {
         # Second declension masculine
-        'NUMERUS': {'acc': 'NUMERUM', 'dat': 'NUMERO', 'abl': 'NUMERO', 'voc': 'NUMERE'},
-        'PRIMUS': {'acc': 'PRIMUM', 'dat': 'PRIMO', 'abl': 'PRIMO', 'voc': 'PRIME'},
-        'SECUNDUS': {'acc': 'SECUNDUM', 'dat': 'SECUNDO', 'abl': 'SECUNDO', 'voc': 'SECUNDE'},
-        'TERTIUS': {'acc': 'TERTIUM', 'dat': 'TERTIO', 'abl': 'TERTIO', 'voc': 'TERTIE'},
-        'QUARTUS': {'acc': 'QUARTUM', 'dat': 'QUARTO', 'abl': 'QUARTO', 'voc': 'QUARTE'},
-        'QUINTUS': {'acc': 'QUINTUM', 'dat': 'QUINTO', 'abl': 'QUINTO', 'voc': 'QUINTE'},
-        'MAXIMVS': {'acc': 'MAXIMVM', 'dat': 'MAXIMO', 'abl': 'MAXIMO', 'voc': 'MAXIME'},
-        'AMICUS': {'acc': 'AMICUM', 'dat': 'AMICO', 'abl': 'AMICO', 'voc': 'AMICE'},
-        'SERVUS': {'acc': 'SERVUM', 'dat': 'SERVO', 'abl': 'SERVO', 'voc': 'SERVE'},
-        'DOMINUS': {'acc': 'DOMINUM', 'dat': 'DOMINO', 'abl': 'DOMINO', 'voc': 'DOMINE'},
-        'FILIUS': {'acc': 'FILIUM', 'dat': 'FILIO', 'abl': 'FILIO', 'voc': 'FILI'},
-        'ANNUS': {'acc': 'ANNUM', 'dat': 'ANNO', 'abl': 'ANNO', 'voc': 'ANNE'},
-        'LIBER': {'acc': 'LIBRUM', 'dat': 'LIBRO', 'abl': 'LIBRO', 'voc': 'LIBER'},
-        'VENTER': {'acc': 'VENTREM', 'dat': 'VENTRI', 'abl': 'VENTRE', 'voc': 'VENTER'},
-        'INDEX': {'acc': 'INDICEM', 'dat': 'INDICI', 'abl': 'INDICE', 'voc': 'INDEX'},
-        'RESULTAT': {'acc': 'RESULTATUM', 'dat': 'RESULTATO', 'abl': 'RESULTATO', 'voc': 'RESULTAT'},
-        'ERROR': {'acc': 'ERROREM', 'dat': 'ERRORI', 'abl': 'ERRORE', 'voc': 'ERROR'},
-        'EXCEPTIO': {'acc': 'EXCEPTIONEM', 'dat': 'EXCEPTIONI', 'abl': 'EXCEPTIONE', 'voc': 'EXCEPTIO'},
+        'NUMERUS': {'gen': 'NUMERI', 'acc': 'NUMERUM', 'dat': 'NUMERO', 'abl': 'NUMERO', 'voc': 'NUMERE'},
+        'PRIMUS': {'gen': 'PRIMI', 'acc': 'PRIMUM', 'dat': 'PRIMO', 'abl': 'PRIMO', 'voc': 'PRIME'},
+        'SECUNDUS': {'gen': 'SECUNDI', 'acc': 'SECUNDUM', 'dat': 'SECUNDO', 'abl': 'SECUNDO', 'voc': 'SECUNDE'},
+        'TERTIUS': {'gen': 'TERTII', 'acc': 'TERTIUM', 'dat': 'TERTIO', 'abl': 'TERTIO', 'voc': 'TERTIE'},
+        'QUARTUS': {'gen': 'QUARTI', 'acc': 'QUARTUM', 'dat': 'QUARTO', 'abl': 'QUARTO', 'voc': 'QUARTE'},
+        'QUINTUS': {'gen': 'QUINTI', 'acc': 'QUINTUM', 'dat': 'QUINTO', 'abl': 'QUINTO', 'voc': 'QUINTE'},
+        'MAXIMVS': {'gen': 'MAXIMI', 'acc': 'MAXIMVM', 'dat': 'MAXIMO', 'abl': 'MAXIMO', 'voc': 'MAXIME'},
+        'AMICUS': {'gen': 'AMICI', 'acc': 'AMICUM', 'dat': 'AMICO', 'abl': 'AMICO', 'voc': 'AMICE'},
+        'SERVUS': {'gen': 'SERVII', 'acc': 'SERVUM', 'dat': 'SERVO', 'abl': 'SERVO', 'voc': 'SERVE'},
+        'DOMINUS': {'gen': 'DOMINI', 'acc': 'DOMINUM', 'dat': 'DOMINO', 'abl': 'DOMINO', 'voc': 'DOMINE'},
+        'FILIUS': {'gen': 'FILII', 'acc': 'FILIUM', 'dat': 'FILIO', 'abl': 'FILIO', 'voc': 'FILI'},
+        'ANNUS': {'gen': 'ANNI', 'acc': 'ANNUM', 'dat': 'ANNO', 'abl': 'ANNO', 'voc': 'ANNE'},
+        'LIBER': {'gen': 'LIBRI', 'acc': 'LIBRUM', 'dat': 'LIBRO', 'abl': 'LIBRO', 'voc': 'LIBER'},
+        'VENTER': {'gen': 'VENTRIS', 'acc': 'VENTREM', 'dat': 'VENTRI', 'abl': 'VENTRE', 'voc': 'VENTER'},
+        'INDEX': {'gen': 'INDICIS', 'acc': 'INDICEM', 'dat': 'INDICI', 'abl': 'INDICE', 'voc': 'INDEX'},
+        'RESULTAT': {'gen': 'RESULTATI', 'acc': 'RESULTATUM', 'dat': 'RESULTATO', 'abl': 'RESULTATO', 'voc': 'RESULTAT'},
+        'ERROR': {'gen': 'ERRORIS', 'acc': 'ERROREM', 'dat': 'ERRORI', 'abl': 'ERRORE', 'voc': 'ERROR'},
+        'EXCEPTIO': {'gen': 'EXCEPTIONIS', 'acc': 'EXCEPTIONEM', 'dat': 'EXCEPTIONI', 'abl': 'EXCEPTIONE', 'voc': 'EXCEPTIO'},
         # Second declension neuter
-        'BELLVM': {'acc': 'BELLVM', 'dat': 'BELLO', 'abl': 'BELLO', 'voc': 'BELLVM'},
-        'VERBVM': {'acc': 'VERBVM', 'dat': 'VERBO', 'abl': 'VERBO', 'voc': 'VERBVM'},
-        'DONVM': {'acc': 'DONVM', 'dat': 'DONO', 'abl': 'DONO', 'voc': 'DONVM'},
-        'PRAEFIXVM': {'acc': 'PRAEFIXVM', 'dat': 'PRAEFIXO', 'abl': 'PRAEFIXO', 'voc': 'PRAEFIXVM'},
+        'BELLVM': {'gen': 'BELLI', 'acc': 'BELLVM', 'dat': 'BELLO', 'abl': 'BELLO', 'voc': 'BELLVM'},
+        'VERBVM': {'gen': 'VERBI', 'acc': 'VERBVM', 'dat': 'VERBO', 'abl': 'VERBO', 'voc': 'VERBVM'},
+        'DONVM': {'gen': 'DONI', 'acc': 'DONVM', 'dat': 'DONO', 'abl': 'DONO', 'voc': 'DONVM'},
+        'PRAEFIXVM': {'gen': 'PRAEFIXI', 'acc': 'PRAEFIXVM', 'dat': 'PRAEFIXO', 'abl': 'PRAEFIXO', 'voc': 'PRAEFIXVM'},
         # First declension feminine
-        'PUELLA': {'acc': 'PUELLAM', 'dat': 'PUELLAE', 'abl': 'PUELLA', 'voc': 'PUELLA'},
-        'ROSA': {'acc': 'ROSAM', 'dat': 'ROSAE', 'abl': 'ROSA', 'voc': 'ROSA'},
-        'AQUA': {'acc': 'AQUAM', 'dat': 'AQUAE', 'abl': 'AQUA', 'voc': 'AQUA'},
-        'VITA': {'acc': 'VITAM', 'dat': 'VITAE', 'abl': 'VITA', 'voc': 'VITA'},
-        'TERRA': {'acc': 'TERRAM', 'dat': 'TERRAE', 'abl': 'TERRA', 'voc': 'TERRA'},
-        'SUMMA': {'acc': 'SUMMAM', 'dat': 'SUMMAE', 'abl': 'SUMMA', 'voc': 'SUMMA'},
+        'PUELLA': {'gen': 'PUELLAE', 'acc': 'PUELLAM', 'dat': 'PUELLAE', 'abl': 'PUELLA', 'voc': 'PUELLA'},
+        'ROSA': {'gen': 'ROSAE', 'acc': 'ROSAM', 'dat': 'ROSAE', 'abl': 'ROSA', 'voc': 'ROSA'},
+        'AQUA': {'gen': 'AQUAE', 'acc': 'AQUAM', 'dat': 'AQUAE', 'abl': 'AQUA', 'voc': 'AQUA'},
+        'VITA': {'gen': 'VITAE', 'acc': 'VITAM', 'dat': 'VITAE', 'abl': 'VITA', 'voc': 'VITA'},
+        'TERRA': {'gen': 'TERRAE', 'acc': 'TERRAM', 'dat': 'TERRAE', 'abl': 'TERRA', 'voc': 'TERRA'},
+        'SUMMA': {'gen': 'SUMMAE', 'acc': 'SUMMAM', 'dat': 'SUMMAE', 'abl': 'SUMMA', 'voc': 'SUMMA'},
         # Third declension
-        'REX': {'acc': 'REGEM', 'dat': 'REGI', 'abl': 'REGE', 'voc': 'REX'},
-        'CIVIS': {'acc': 'CIVEM', 'dat': 'CIVI', 'abl': 'CIVE', 'voc': 'CIVIS'},
-        'CORPVS': {'acc': 'CORPVS', 'dat': 'CORPORI', 'abl': 'CORPORE', 'voc': 'CORPVS'},
-        'TEMPVS': {'acc': 'TEMPVS', 'dat': 'TEMPORI', 'abl': 'TEMPORE', 'voc': 'TEMPVS'},
-        'ITER': {'acc': 'ITER', 'dat': 'ITINERI', 'abl': 'ITINERE', 'voc': 'ITER'},
-        'NOMEN': {'acc': 'NOMEN', 'dat': 'NOMINI', 'abl': 'NOMINE', 'voc': 'NOMEN'},
-        'AETAS': {'acc': 'AETATEM', 'dat': 'AETATI', 'abl': 'AETATE', 'voc': 'AETAS'},
-        'SALVTATIO': {'acc': 'SALVTATIONEM', 'dat': 'SALVTATIONI', 'abl': 'SALVTATIONE', 'voc': 'SALVTATIO'},
-        'INPUTVM': {'acc': 'INPUTVM', 'dat': 'INPUTO', 'abl': 'INPUTO', 'voc': 'INPUTVM'},
-        'CONTINVA': {'acc': 'CONTINVAM', 'dat': 'CONTINVAE', 'abl': 'CONTINVA', 'voc': 'CONTINVA'},
-        'RESPONSUM': {'acc': 'RESPONSUM', 'dat': 'RESPONSO', 'abl': 'RESPONSO', 'voc': 'RESPONSUM'},
+        'REX': {'gen': 'REGIS', 'acc': 'REGEM', 'dat': 'REGI', 'abl': 'REGE', 'voc': 'REX'},
+        'CIVIS': {'gen': 'CIVIS', 'acc': 'CIVEM', 'dat': 'CIVI', 'abl': 'CIVE', 'voc': 'CIVIS'},
+        'CORPVS': {'gen': 'CORPORIS', 'acc': 'CORPVS', 'dat': 'CORPORI', 'abl': 'CORPORE', 'voc': 'CORPVS'},
+        'TEMPVS': {'gen': 'TEMPORIS', 'acc': 'TEMPVS', 'dat': 'TEMPORI', 'abl': 'TEMPORE', 'voc': 'TEMPVS'},
+        'ITER': {'gen': 'ITINERIS', 'acc': 'ITER', 'dat': 'ITINERI', 'abl': 'ITINERE', 'voc': 'ITER'},
+        'NOMEN': {'gen': 'NOMINIS', 'acc': 'NOMEN', 'dat': 'NOMINI', 'abl': 'NOMINE', 'voc': 'NOMEN'},
+        'AETAS': {'gen': 'AETATIS', 'acc': 'AETATEM', 'dat': 'AETATI', 'abl': 'AETATE', 'voc': 'AETAS'},
+        'SALVTATIO': {'gen': 'SALVTATIONIS', 'acc': 'SALVTATIONEM', 'dat': 'SALVTATIONI', 'abl': 'SALVTATIONE', 'voc': 'SALVTATIO'},
+        'INPUTVM': {'gen': 'INPUTI', 'acc': 'INPUTVM', 'dat': 'INPUTO', 'abl': 'INPUTO', 'voc': 'INPUTVM'},
+        'CONTINVA': {'gen': 'CONTINVAE', 'acc': 'CONTINVAM', 'dat': 'CONTINVAE', 'abl': 'CONTINVA', 'voc': 'CONTINVA'},
+        'RESPONSUM': {'gen': 'RESPONSI', 'acc': 'RESPONSUM', 'dat': 'RESPONSO', 'abl': 'RESPONSO', 'voc': 'RESPONSUM'},
         # Fourth declension
-        'MANVS': {'acc': 'MANVM', 'dat': 'MANVI', 'abl': 'MANV', 'voc': 'MANVS'},
-        'GRADVS': {'acc': 'GRADVM', 'dat': 'GRADVI', 'abl': 'GRADV', 'voc': 'GRADVS'},
+        'MANVS': {'gen': 'MANVS', 'acc': 'MANVM', 'dat': 'MANVI', 'abl': 'MANV', 'voc': 'MANVS'},
+        'GRADVS': {'gen': 'GRADVS', 'acc': 'GRADVM', 'dat': 'GRADVI', 'abl': 'GRADV', 'voc': 'GRADVS'},
         # Fifth declension
-        'RES': {'acc': 'REM', 'dat': 'REI', 'abl': 'RE', 'voc': 'RES'},
-        'DIES': {'acc': 'DIEM', 'dat': 'DIEI', 'abl': 'DIE', 'voc': 'DIES'},
+        'RES': {'gen': 'REI', 'acc': 'REM', 'dat': 'REI', 'abl': 'RE', 'voc': 'RES'},
+        'DIES': {'gen': 'DIEI', 'acc': 'DIEM', 'dat': 'DIEI', 'abl': 'DIE', 'voc': 'DIES'},
     }
     
     @classmethod
@@ -156,6 +156,11 @@ class LatinDeclension:
     def get_vocative(cls, nominative: str) -> Optional[str]:
         """Get the vocative form of a noun."""
         return cls.DECLENSIONS.get(nominative, {}).get('voc')
+    
+    @classmethod
+    def get_genitive(cls, nominative: str) -> Optional[str]:
+        """Get the genitive form of a noun."""
+        return cls.DECLENSIONS.get(nominative, {}).get('gen')
 
 
 class Tokenizer:
@@ -273,6 +278,13 @@ class Tokenizer:
                     if len(voc) > best_length:
                         best_match = ('VARIABLE', var)
                         best_length = len(voc)
+                
+                # Check genitive (for field access like NOMENSERVII)
+                gen = LatinDeclension.get_genitive(var)
+                if gen and line[pos:].startswith(gen):
+                    if len(gen) > best_length:
+                        best_match = ('GENITIVE', var)  # Mark as genitive for field access
+                        best_length = len(gen)
             
             if best_match:
                 # Check if next token would be a keyword - if so, prefer shorter variable match
@@ -424,6 +436,7 @@ class LatinInterpreter:
                     # Second declension masculine like NUMERUS
                     root = var_name[:-2]
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': root + 'I',
                         'acc': root + 'UM',
                         'dat': root + 'O',
                         'abl': root + 'O',
@@ -432,6 +445,7 @@ class LatinInterpreter:
                 elif var_name.endswith('OR'):
                     # Third declension like ADDITOR, ERROR
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': var_name + 'IS',
                         'acc': var_name + 'EM',
                         'dat': var_name + 'I',
                         'abl': var_name + 'E',
@@ -440,6 +454,7 @@ class LatinInterpreter:
                 elif var_name.endswith('IO'):
                     # Third declension like EXCEPTIO
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': var_name + 'NIS',
                         'acc': var_name + 'NEM',
                         'dat': var_name + 'NI',
                         'abl': var_name + 'NE',
@@ -449,6 +464,7 @@ class LatinInterpreter:
                     # First declension feminine like SUMMA
                     root = var_name[:-1]
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': root + 'AE',
                         'acc': root + 'AM',
                         'dat': root + 'AE',
                         'abl': root + 'A',
@@ -458,6 +474,7 @@ class LatinInterpreter:
                     # Second declension neuter
                     root = var_name[:-2]
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': root + 'I',
                         'acc': var_name,
                         'dat': root + 'O',
                         'abl': root + 'O',
@@ -466,6 +483,7 @@ class LatinInterpreter:
                 else:
                     # Default to second declension masculine pattern
                     LatinDeclension.DECLENSIONS[var_name] = {
+                        'gen': var_name + 'I',
                         'acc': var_name + 'M',
                         'dat': var_name + 'O',
                         'abl': var_name + 'O',
@@ -476,6 +494,24 @@ class LatinInterpreter:
         
         # Handle SCRIBE (print)
         if tokens[0] == ('KEYWORD', 'SCRIBE'):
+            # SCRIBE FIELDGENITIVE (print field of object)
+            if len(tokens) == 3 and tokens[1][0] == 'VARIABLE' and tokens[2][0] == 'GENITIVE':
+                field_name = tokens[1][1]
+                object_name = tokens[2][1]
+                if object_name not in self.variables:
+                    self.error(f"'{object_name}' non declaratur", f"Object '{object_name}' not declared")
+                if not isinstance(self.variables[object_name], dict):
+                    self.error(f"'{object_name}' non est structura", f"'{object_name}' is not a struct")
+                if field_name not in self.variables[object_name]:
+                    self.error(f"Campus '{field_name}' in '{object_name}' non existit", 
+                              f"Field '{field_name}' in '{object_name}' does not exist")
+                value = self.variables[object_name][field_name]
+                if isinstance(value, int):
+                    print(RomanNumeralParser.to_roman(value))
+                else:
+                    print(value)
+                return None
+                
             if len(tokens) != 2:
                 self.error("Syntax incorrecta post SCRIBE", "Invalid syntax after SCRIBE")
             if tokens[1][0] == 'STRING':
@@ -847,6 +883,52 @@ class LatinInterpreter:
             # Condition is true, enter SI block
             self.block_depth += 1
             return None
+        
+        # Handle field assignment (FIELDGENITIVE EST ...)
+        # Example: NOMENSERVII EST "Marcus" (name of servant is Marcus)
+        if len(tokens) >= 3 and tokens[0][0] == 'VARIABLE' and tokens[1][0] == 'GENITIVE' and tokens[2] == ('KEYWORD', 'EST'):
+            field_name = tokens[0][1]  # NOMEN
+            object_name = tokens[1][1]  # SERVUS
+            
+            if object_name not in self.variables:
+                self.error(f"'{object_name}' non declaratur", f"Object '{object_name}' not declared")
+            
+            # Ensure the object is a dictionary (struct)
+            if not isinstance(self.variables[object_name], dict):
+                # Initialize as dict if it's not already
+                self.variables[object_name] = {}
+            
+            # Field assignment: FIELDGENITIVE EST STRING
+            if len(tokens) == 4 and tokens[3][0] == 'STRING':
+                self.variables[object_name][field_name] = tokens[3][1]
+                return None
+            
+            # Field assignment: FIELDGENITIVE EST NUMBER
+            if len(tokens) == 4 and tokens[3][0] == 'NUMBER':
+                self.variables[object_name][field_name] = tokens[3][1]
+                return None
+            
+            # Field assignment: FIELDGENITIVE EST VARIABLE
+            if len(tokens) == 4 and tokens[3][0] == 'VARIABLE':
+                source_var = tokens[3][1]
+                if source_var not in self.variables:
+                    self.error(f"'{source_var}' non declaratur", f"Variable '{source_var}' not declared")
+                self.variables[object_name][field_name] = self.variables[source_var]
+                return None
+            
+            # Field assignment: FIELDGENITIVE EST FIELD2GENITIVE2 (copy from another field)
+            if len(tokens) == 5 and tokens[3][0] == 'VARIABLE' and tokens[4][0] == 'GENITIVE':
+                source_field = tokens[3][1]
+                source_object = tokens[4][1]
+                if source_object not in self.variables:
+                    self.error(f"'{source_object}' non declaratur", f"Object '{source_object}' not declared")
+                if not isinstance(self.variables[source_object], dict):
+                    self.error(f"'{source_object}' non est structura", f"'{source_object}' is not a struct")
+                if source_field not in self.variables[source_object]:
+                    self.error(f"Campus '{source_field}' in '{source_object}' non existit", 
+                              f"Field '{source_field}' in '{source_object}' does not exist")
+                self.variables[object_name][field_name] = self.variables[source_object][source_field]
+                return None
         
         # Handle assignment (VARIABLE EST ...)
         if len(tokens) >= 3 and tokens[0][0] == 'VARIABLE' and tokens[1] == ('KEYWORD', 'EST'):

@@ -3,18 +3,29 @@
 ## Completed Features
 
 ### Core Language Features
+
 ✅ Variables with Latin declensions (nominative, accusative, dative, ablative, vocative, genitive)
 ✅ Roman numeral support (I-MMMM)
 ✅ String handling with 5 operations (startswith, endswith, contains, indexof, equals)
 ✅ Automatic declension based on word endings (-US, -A, -VM/-UM, -OR, -IO)
 ✅ No-whitespace parsing with Latin morphology
+✅ Structs/Objects with genitive case for field access
 
 ### Control Flow
+
 ✅ Conditional statements (SI, ALITER, FINIS)
 ✅ Loops (DUM, FINIS)
 ✅ Proper block depth tracking for nested structures
 
+### Object-Oriented Features
+
+✅ Struct/object creation using genitive case
+✅ Field assignment (FIELDGENITIVE EST VALUE)
+✅ Field access for reading (SCRIBEFIELDGENITIVE)
+✅ Automatic object initialization as dictionary/struct
+
 ### Arithmetic Operations
+
 ✅ Addition (ADDE - with accusative + dative)
 ✅ Subtraction (DEME - with accusative + ablative)
 ✅ Multiplication (MVLTIPLICA)
@@ -22,18 +33,21 @@
 ✅ Comparison operators (AEQUAT, MAIVS, MINOR)
 
 ### Functions
+
 ✅ Function definition (FAC - with nominative + dative parameters)
 ✅ Function calls (VOCA - with accusative arguments)
 ✅ Return values (REDDO - with accusative)
 ✅ Proper scope and call stack management
 
 ### Input/Output
+
 ✅ Output (SCRIBE - with accusative)
 ✅ User input (LEGO - with automatic type detection)
 ✅ Debug output (AVDI - with [DEBUG] prefix)
 ✅ Log output (NOTA - with [LOG] prefix)
 
 ### Exception Handling
+
 ✅ Manual exceptions (IACE - with vocative case)
 ✅ Exception handlers (CAPE - with vocative case)
 ✅ Automatic exceptions (division by zero throws ERROR)
@@ -43,11 +57,13 @@
 ## Example Programs
 
 ### 1. Hello World
+
 ```latin
 SCRIBE"Salve Munde!"
 ```
 
 ### 2. Variables and Arithmetic
+
 ```latin
 SITNUMERUS
 SITPRIMUS
@@ -58,6 +74,7 @@ SCRIBENUMERUM
 ```
 
 ### 3. Conditionals
+
 ```latin
 SITNUMERUS
 NUMERUSESTX
@@ -67,6 +84,7 @@ FINIS
 ```
 
 ### 4. Loops
+
 ```latin
 SITNUMERUS
 NUMERUSESTX
@@ -77,6 +95,7 @@ FINIS
 ```
 
 ### 5. Functions
+
 ```latin
 SITX
 SITY
@@ -91,6 +110,7 @@ SCRIBESUMMA
 ```
 
 ### 6. Exception Handling
+
 ```latin
 SITERROR
 CAPEERROR
@@ -99,13 +119,28 @@ FINIS
 IACEERROR"Something wrong"
 ```
 
-### 7. ELIZA Chatbot
+### 7. Structs/Objects
+
+```latin
+SITSERVUS
+SITNOMEN
+SITAETAS
+NOMENSERVIIEST"Marcus"
+NUMERUSESTXXX
+AETASSERVIIESTNUMERUS
+SCRIBENOMENSERVII
+SCRIBEAETASSERVII
+```
+
+### 8. ELIZA Chatbot
+
 Working psychotherapy chatbot using string operations and loops!
 
 ## File Structure
-- `latin.py` - Main interpreter (1160 lines)
+
+- `latin.py` - Main interpreter (1246 lines)
 - `README.md` - Complete documentation
-- `examples/` - 18 example programs:
+- `examples/` - 19 example programs:
   - hello.lat
   - addition.lat
   - conditional.lat
@@ -125,10 +160,13 @@ Working psychotherapy chatbot using string operations and loops!
   - exception_simple.lat
   - exceptions.lat
   - division_by_zero.lat
+  - struct.lat
 
 ## Language Statistics
+
 - 27 keywords
-- 5 Latin cases fully implemented
+- 6 Latin cases fully implemented (including genitive for struct field access)
+- 5 string operations
 - 5 string operations
 - 5 arithmetic operations
 - 3 comparison operators
@@ -137,6 +175,7 @@ Working psychotherapy chatbot using string operations and loops!
 - Automatic declension for -US, -A, -VM/-UM, -OR, -IO endings
 
 ## Testing Status
+
 ✅ All basic features tested
 ✅ All control flow tested  
 ✅ All arithmetic operations tested
@@ -146,15 +185,19 @@ Working psychotherapy chatbot using string operations and loops!
 ✅ String operations tested
 ✅ User input tested
 ✅ ELIZA chatbot working
+✅ Struct/object field access tested
 
 ## Known Limitations
+
 - Program execution stops after exception handling (no try/catch/finally pattern)
 - Exception handlers only catch one exception before terminating
 - No nested exception handling
 - No custom exception types beyond those declared with SIT
+- Field access with direct Roman numerals can have parsing ambiguities (use intermediate variables)
 - Division by zero only throws exception if CAPEERROR handler exists
 
 ## Future Enhancements
+
 - Multiple exception handlers in sequence
 - Resume execution after exception handling
 - Try/catch/finally pattern

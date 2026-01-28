@@ -66,9 +66,17 @@ LATIN uses the traditional Latin case system to determine the grammatical role o
   - Example: NUMERI, PRIMI, AMICI
 
 - **Vocative** - The address case (calling someone)
-  - Reserved for future use in LATIN
+  - Used for exception handling (IACE/CAPE)
   - Note: Function calls use **VOCA** (verb "I call") with **accusative** case, not vocative case
   - Example vocative forms: NUMERE, PRIME, AMICE
+
+- **Genitive** - The possessive case ("of")
+  - Used for accessing fields of objects/structs
+  - Syntax: FIELDGENITIVE EST VALUE to set a field
+  - Syntax: SCRIBEFIELDGENITIVE to read a field
+  - Example: NOMENSERVII means "name of servant" (NOMEN of SERVUS)
+  - When a field is set on a variable, it automatically becomes a struct/object
+  - Example genitive forms: NUMERI, SERVII, PERSONAE, DOMINI
 
 When using variables in different contexts, they must be declined to the appropriate case (nominative, genitive, dative, accusative, ablative, or vocative) according to their grammatical function in the statement.
 
@@ -327,6 +335,88 @@ SECUNDUSESTII
 TERTIUSESTDVCEPRIMOSECUNDO
 SCRIBETERTIUM        ; outputs: L
 ```
+
+## Structs and Objects
+
+LATIN supports object-oriented programming using the **genitive case** ("of") for field access. Any variable can become a struct/object by setting fields on it.
+
+### Declaring Structs
+
+All variables (both the object and field names) must be declared with `SIT`:
+
+```latin
+SITSERVUS    ; Declare the object
+SITNOMEN     ; Declare field names
+SITAETAS
+```
+
+### Setting Fields
+
+Use the genitive case to set field values. The syntax is: `FIELDGENITIVE EST VALUE`
+
+Where:
+
+- `FIELD` is the field name in nominative case
+- `GENITIVE` is the genitive form of the object name
+- `VALUE` is the value to assign (string, number, or variable)
+
+Example:
+
+```latin
+; NOMENSERVII = "name of servant" (NOMEN of SERVUS)
+NOMENSERVIIEST"Marcus"
+
+; For numbers, use an intermediate variable
+NUMERUSESTXXX
+AETASSERVIIESTNUMERUS
+```
+
+### Reading Fields
+
+Use the genitive case to access field values:
+
+```latin
+SCRIBENOMENSERVII    ; Print the name field of SERVUS
+SCRIBEAETASSERVII    ; Print the age field of SERVUS
+```
+
+### Complete Example
+
+```latin
+; Declare object and fields
+SITSERVUS
+SITNOMEN
+SITAETAS
+SITNUMERUS
+
+; Set fields
+NOMENSERVIIEST"Marcus"
+NUMERUSESTXXX
+AETASSERVIIESTNUMERUS
+
+; Access fields
+SCRIBE"Name:"
+SCRIBENOMENSERVII
+SCRIBE"Age:"
+SCRIBEAETASSERVII
+```
+
+Output:
+
+```text
+Name:
+Marcus
+Age:
+XXX
+```
+
+### Genitive Forms
+
+Common genitive forms by declension:
+
+- Second declension (-US): SERVUS → SERVII, DOMINUS → DOMINI, NUMERUS → NUMERI
+- First declension (-A): PUELLA → PUELLAE, PERSONA → PERSONAE
+- Third declension: ERROR → ERRORIS, NOMEN → NOMINIS
 
 ### Functions
 

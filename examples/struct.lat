@@ -1,0 +1,36 @@
+; LATIN example - Struct/Object with genitive case
+; Demonstrates object-oriented programming using the genitive case
+;
+; The genitive case ("of") is used to access fields of objects/structs.
+; Syntax: FIELDGENITIVE EST VALUE
+; Example: NOMENSERVII means "name of servant" (NOMEN of SERVUS)
+;
+; This creates a struct-like object where:
+; - SERVUS is the object variable
+; - NOMEN and AETAS are field names
+; - SERVII is the genitive form of SERVUS
+;
+; All variables must be declared with SIT first.
+; When a field is set, the object automatically becomes a dictionary/struct.
+
+; Declare the object and field names
+SITSERVUS
+SITNOMEN
+SITAETAS
+SITNUMERUS
+
+; Set string field using genitive case
+; NOMENSERVII EST "Marcus" = "The name of the servant is Marcus"
+NOMENSERVIIEST"Marcus"
+
+; Set number field (must use intermediate variable)
+; Direct number assignment after genitive doesn't parse correctly due to
+; Roman numeral parsing, so we assign to a variable first
+NUMERUSESTXXX
+AETASSERVIIESTNUMERUS
+
+; Read and print field values
+SCRIBE"Name:"
+SCRIBENOMENSERVII
+SCRIBE"Age:"
+SCRIBEAETASSERVII
