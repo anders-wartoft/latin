@@ -25,9 +25,22 @@ That's it! Just use `SCRIBE` (Latin for "write") followed by a string in quotes.
 
 Output:
 
-```latin
+```bash
 Hello World!
 ```
+
+### Running LATIN Programs
+
+Save your LATIN code to a file (e.g., `hello.lat`) and run it with:
+
+```bash
+python3 latin.py hello.lat
+```
+
+You can also:
+
+- Use `--english` flag for English error messages: `python3 latin.py hello.lat --english`
+- Start an interactive REPL: `python3 latin.py --repl` or just `python3 latin.py`
 
 ### Variables
 
@@ -529,19 +542,6 @@ LATIN> SCRIBENUMERUM
 XLII
 LATIN> VALE
 Vale! (Goodbye!)
-```
-
-### Running LATIN Programs
-
-```bash
-# Run a LATIN program
-python3 latin.py program.lat
-
-# Run with English error messages (default is Latin)
-python3 latin.py program.lat --english
-
-# Start interactive REPL
-python3 latin.py --repl
 ```
 
 ### Output Format
