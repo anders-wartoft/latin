@@ -1,0 +1,15 @@
+SITADDITOR           ; function name
+SITPRIMUS            ; first parameter
+SITSECUNDUS          ; second parameter
+SITRESULTAT          ; return value
+SITALPHA             ; first argument
+SITBETA              ; second argument
+SITSUMMA             ; result variable
+FACADDITORPRIMOSECUNDO  ; define ADDITOR with parameters PRIMO, SECONDO (dative)
+RESULTATESTADDEPRIMUMSECUNDUM  ; add PRIMUM + SECUNDUM
+REDDORESULTAT        ; return RESULTAT (accusative)
+FINIS                ; end function
+ALPHAESTI            ; ALPHA = I (1)
+BETAESTII            ; BETA = II (2)
+SUMMAESTVOCAADDITOREMALPHABETA  ; call ADDITOREM (accusative) with ALPHA, BETA
+SCRIBESUMMA          ; print result (should print III)
