@@ -11,6 +11,14 @@ LATIN is an acronym for `Latin Ain't This Insufferable Normally`. We normally di
 - **Educational Focus**: LATIN is intended to be a stepping stone for learners to understand programming concepts before moving on to more complex languages.
 - **Cross-Platform**: LATIN can be run on various platforms, making it versatile for different development environments.
 
+## Documentation Overview
+
+- [README.md](README.md): Project overview, quick start, and links to other docs.
+- [FEATURES.md](FEATURES.md): List of features and capabilities.
+- [IMPLEMENTATION.md](IMPLEMENTATION.md): Technical details about how LATIN is implemented.
+- [MINIMAL_SPEC.md](MINIMAL_SPEC.md): Concise, formal specification of the language.
+- [LATIN.md](LATIN.md): In-depth, user-friendly guide—ideal as a TL;DR for language usage, philosophy, and practical examples.
+
 ## Getting Started
 
 ### Hello World!
